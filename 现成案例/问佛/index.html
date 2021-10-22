@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+    <title>我问佛</title>
+    <link href="css/iSlider.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <!--引入网络字体库-->
+    <link href='http://api.youziku.com/webfont/CSS/5700e9c3f629d8042c228741' rel='stylesheet' type='text/css' />
+    <style>
+        html {
+            font-size: 62.5%;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: #333;
+            overflow: hidden;
+            font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+        }
+        /*ul wrapper*/
+        
+        #iSlider-wrapper {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            position: absolute;
+        }
+        
+        #iSlider-wrapper ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        #iSlider-wrapper li {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-pack: center;
+            -webkit-box-align: center;
+            list-style: none;
+        }
+        
+        #iSlider-wrapper li img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .media-wrap {
+            overflow: hidden;
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 10000;
+            width: 8rem;
+            height: 3.5rem;
+            font-size: 1.6rem;
+        }
+        
+        .media-wrap #musicBtnTxt {
+            float: right;
+            height: 3rem;
+            width: 4rem;
+            line-height: 3rem;
+            text-align: center;
+            color: #fff;
+            font-size: 2rem;
+        }
+        
+        .media-wrap .music-btn {
+            float: left;
+            width: 3.4rem;
+            height: 3.4rem;
+            background: url('images/music-icon.png');
+            background-size: cover;
+        }
+        
+        .musicOn {
+            -webkit-animation: reverseRotate 2.5s linear infinite;
+        }
+        /*旋转动画*/
+        
+        @-webkit-keyframes reverseRotate {
+            0% {
+                -webkit-transform: rotateZ(0deg);
+            }
+            100% {
+                -webkit-transform: rotateZ(-360deg);
+            }
+        }
+        /* Arrow */
+        
+        #iSlider-arrow {
+            position: fixed;
+            width: 3rem;
+            height: 3rem;
+            left: 0;
+            right: 0;
+            bottom: 2%;
+            margin: 0 auto;
+            border-top: 2px solid #fff;
+            border-right: 2px solid #fff;
+            z-index: 10000;
+            opacity: 0.6;
+            -webkit-animation: nextPage 2s linear infinite;
+        }
+        /*Arrow动画效果*/
+        
+        @-webkit-keyframes nextPage {
+            0% {
+                -webkit-transform: translateY(20px) rotate(-45deg);
+                opacity: 0.6;
+            }
+            50% {
+                -webkit-transform: translateY(10px) rotate(-45deg);
+                opacity: 0.3;
+            }
+            100% {
+                -webkit-transform: translateY(0px) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!--外部容器-->
+    <div id="iSlider-wrapper"></div>
+
+    <!--音乐按钮-->
+    <aside class="media-wrap">
+        <span id="musicBtnTxt" style="display: none;">关闭</span>
+        <span id="musicBtn" class="music-btn musicOn"></span>
+    </aside>
+    <audio id="autoplay" src="audio/1.mp3" autoplay="autoplay" loop="loop"></audio>
+
+    <!--向上箭头-->
+    <div id="iSlider-arrow"></div>
+
+    <script type="text/javascript" src="js/iSlider.js"></script>
+    <script type="text/javascript" src="js/iSlider.animate.js"></script>
+
+
+
+    <script id="show-code">
+        var list = [
+
+            {
+                content: "<div class='page1_bg'>" +
+                    "<div class='page1'>" +
+                    "<div class='first'>" + "问佛" +
+                    "</div>" +
+                    "<div class='second'>" + "仓英嘉措" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }, {
+                content: "<div class='page2_bg'>" +
+                    "<div class='page2'>" +
+                    "<div class='first'>" + "我问佛，为何不给所有女子" +
+                    "</div>" +
+                    "<div class='second'>" + "羞花闭月的容颜" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }, {
+                content: "<div class='page3_bg'>" +
+                    "<div class='page3'>" +
+                    "<div class='first'>" + "佛曰" +
+                    "</div>" +
+                    "<div class='second'>" + "那只是昙花的一现" +
+                    "</div>" +
+                    "<div class='third'>" + "用来蒙蔽世俗的眼" +
+                    "</div>" +
+                    "<div class='four'>" + "没有什么美" +
+                    "</div>" +
+                    "<div class='five'>" + "可以抵过一颗纯净仁爱的心" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }, {
+                content: "<div class='page4_bg'>" +
+                    "<div class='page4'>" +
+                    "<div class='first'>" + "我把她赐给每一个女子" +
+                    "</div>" +
+                    "<div class='second'>" + "可有人让她蒙上了灰" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }, {
+                content: "<div class='page5_bg'>" +
+                    "<div class='page5'>" +
+                    "<div class='page5-wrap'>" +
+                    "<div class='first animated fadeInRightBig'>" + "我问佛" +
+                    "</div>" +
+                    "<div class='second animated fadeInRightBig'>" + "世间为何有那么多遗憾" +
+                    "</div>" +
+                    "<div class='third animated fadeInRightBig'>" + "佛曰" +
+                    "</div>" +
+                    "<div class='four animated fadeInRightBig'>" + "这是一个娑婆世界" +
+                    "</div>" +
+                    "<div class='five animated fadeInRightBig'>" + "娑婆即遗憾" +
+                    "</div>" +
+                    "<div class='six animated fadeInRightBig'>" + "没有遗憾" +
+                    "</div>" +
+                    "<div class='seven animated fadeInRightBig'>" + "给你再多幸福也不会体会快乐" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }, {
+                content: "<div class='page6_bg'>" +
+                    "<div class='page6'>" +
+                    "<div class='first animated rotateInDownRight'>" + "我问佛" +
+                    "</div>" +
+                    "<div class='second animated rotateInDownRight'>" + "如何让人们的心不再感到孤单" +
+                    "</div>" +
+                    "<div class='third animated rotateInDownRight'>" + "佛曰" +
+                    "</div>" +
+                    "<div class='four animated rotateInDownRight'>" + "每一颗心生来就是孤单而残缺的" +
+                    "</div>" +
+                    "<div class='five animated rotateInDownRight'>" + "多数带着这种残缺度过一生" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }, {
+                content: "<div class='page7_bg'>" +
+                    "<div class='page7'>" +
+                    "<div class='first animated rollIn'>" + "只因与" +
+                    "</div>" +
+                    "<div class='second animated rollIn'>" + "能是它圆满的另一半相遇时" +
+                    "</div>" +
+                    "<div class='third animated rollIn'>" + "不是疏忽错过" +
+                    "</div>" +
+                    "<div class='four animated rollIn'>" + "就是已失去了拥有它的资格" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }, {
+                content: "<div class='page8_bg'>" +
+                    "<div class='page8'>" +
+                    "<div class='first animated bounceInRight'>" + "我问佛" +
+                    "</div>" +
+                    "<div class='second animated bounceInRight'>" + "如果遇到了可以爱的人" +
+                    "</div>" +
+                    "<div class='third animated bounceInRight'>" + "却又怕不能把握该怎么办" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }, {
+                content: "<div class='page9_bg'>" +
+                    "<div class='page9'>" +
+                    "<div class='first'>" + "佛曰" +
+                    "</div>" +
+                    "<div class='second'>" + "留人间多少爱" +
+                    "</div>" +
+                    "<div class='third'>" + "迎浮世千重变" +
+                    "</div>" +
+                    "<div class='four'>" + " 和有情人做快乐事" +
+                    "</div>" +
+                    "<div class='five'>" + "别问是劫是缘" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }, {
+                content: "<div class='page10_bg'>" +
+                    "<div class='page10'>" +
+                    "<div class='first'>" + "我问佛" +
+                    "</div>" +
+                    "<div class='second'>" + "为什么总是在我悲伤的时候下雪" +
+                    "</div>" +
+                    "<div class='third'>" + "佛说" +
+                    "</div>" +
+                    "<div class='four'>" + "冬天就要过去" +
+                    "</div>" +
+                    "<div class='five'>" + "留点记忆" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }, {
+                content: "<div class='page11_bg'>" +
+                    "<div class='page11'>" +
+                    "<div class='first'>" + "我问佛" +
+                    "</div>" +
+                    "<div class='second'>" + "为什么每次下雪" +
+                    "</div>" +
+                    "<div class='third'>" + "都是在我不经意的夜晚" +
+                    "</div>" +
+                    "<div class='four'>" + "佛说" +
+                    "</div>" +
+                    "<div class='five'>" + "不经意的时候" +
+                    "</div>" +
+                    "<div class='six'>" + "人们总会错过很多真正的美丽" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }, {
+                content: "<div class='page12_bg'>" +
+                    "<div class='page12'>" +
+                    "<div class='first'>" + "我问佛" +
+                    "</div>" +
+                    "<div class='second'>" + "那过几天还下不了雪" +
+                    "</div>" +
+                    "<div class='third'>" + "佛说" +
+                    "</div>" +
+                    "<div class='four'>" + "不要只盯着这个季节" +
+                    "</div>" +
+                    "<div class='five'>" + "错过了今冬" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }, {
+                content: "<div class='page13_bg'>" +
+                    "<div class='page13'>" + "<div class='first'>" + "我问佛" +
+                    "</div>" +
+                    "<div class='second'>" + "如何才能和你般睿智" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }, {
+                content: "<div class='page14_bg'>" +
+                    "<div class='page14'>" +
+                    "<div class='first'>" + " 佛曰" +
+                    "</div>" +
+                    "<div class='second'>" + "人生有八苦" +
+                    "</div>" +
+                    "<div class='third'>" + "生 老 病 死 " +
+                    "</div>" +
+                    "<div class='four'>" + "爱别离 怨长久 求不得 放不下" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }, {
+                content: "<div class='page15_bg'>" +
+                    "<div class='page15'>" +
+                    "<div class='first  animated rollIn'>" + " 只有在体验痛苦的过程中" +
+                    "</div>" +
+                    "<div class='second  animated rollIn'>" + "参透生命的真谛" +
+                    "</div>" +
+                    "<div class='third  animated rollIn'>" + "才能得到永生 " +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }, {
+                content: "<div class='page16_bg'>" +
+                    "<div class='page16'>" +
+                    "<div class='first'>" + "  春来花自青" +
+                    "</div>" +
+                    "<div class='second'>" + "秋至叶飘零" +
+                    "</div>" +
+                    "<div class='third'>" + "生存于自然法则之中" +
+                    "</div>" +
+                    "<div class='four'>" + "一个人必须看得懂  放得下" +
+                    "</div>" +
+                    "<div class='five'>" + "才能得到自在 " +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+            }
+
+        ];
+
+        var S = new iSlider({
+            dom: document.getElementById('iSlider-wrapper'),
+            data: list,
+            isOverspread: 1,
+            isVertical: true,
+            isLooping: true,
+            animateTime: 800,
+            animateType: 'card',
+            /*定义翻转过程中的效果需要引入iSlider.animate.js文件 */
+            /*- 目前支持：default（卷动）、rotate（旋转）、depth、flow、flip、card、fade（渐显/隐）、zoomout（向外/内缩放）*/
+            onslidechange: function(index) {
+                console.log(index);
+                //            console.log(this.data.length);
+                var count = this.data.length;
+
+                //控制向上箭头的显示和隐藏
+                if (this.isLooping === false) {
+                    if (index === this.data.length - 1) {
+                        document.getElementById('iSlider-arrow').style.display = 'none';
+                    } else {
+                        document.getElementById('iSlider-arrow').style.display = 'block';
+                    }
+
+                }
+
+                //隐藏
+                document.getElementsByClassName("page" + (index + 1))[0].style.display = "none";
+                if (index === 0) {
+                    document.getElementsByClassName("page16")[0].style.display = "none";
+                    document.getElementsByClassName("page2")[0].style.display = "none";
+
+                } else if (index === count - 1) {
+                    document.getElementsByClassName("page1")[0].style.display = "none";
+                    document.getElementsByClassName("page" + (count - 1))[0].style.display = "none";
+                } else {
+                    document.getElementsByClassName("page" + index)[0].style.display = "none";
+                    document.getElementsByClassName("page" + (index + 2))[0].style.display = "none";
+                }
+                document.getElementsByClassName("page" + (index + 1))[0].style.display = "block";
+
+            }
+        });
+
+        document.getElementsByClassName("page2")[0].style.display = "none";
+    </script>
+    <!--如何在pc端也实现 居中的?
+引入的内容 必须写在一个div内，并设置此div的固定宽高
+
+---
+需要做的事：
+1.完成动画的可回放
+/*实现方法：
+只有滑动到当前页时，当前页的元素才显示出来
+--islider特点
+--- 在实例化部分，直接设置当前页的li的子元素 display:none;display:block无效
+--- 何时设置时才有效?页面元素已经渲染出来，而再次进行了 display:none;display:block
+*/
+
+2.pc下保持 固定手机大小显示
+/*
+6+显示 偏小，位置错位很大
+6 上部已有一部分高度无法抵达---原因未知*/
+3.适应其它浏览器 --
+4.移植到我的网站以及老师网站
+
+如何判断当前是 是鼠标触摸，还是 鼠标点击
+
+/*我的思路
+20160307 当前页加载后，马上进行display:none；display：block从而让其动画从新开始 -- 试验结果错误
+LEE的思路：当前页显示，其它页保持隐藏，只有达到当前页时，开给予显示
+*/
+
+silider的执行原理，只是默认加载三页，切加载的当前页位于中间
+/*js的程序一部分出错，会大致后面的程序无法运行吗（前后程序没有关系）*/
+---
+-->
+</body>
+
+</html>

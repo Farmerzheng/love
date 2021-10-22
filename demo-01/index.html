@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️❤️❤️</title>
+</head>
+<style>
+    html {}
+    
+    body {
+        margin: 0;
+        padding: 0;
+        background: #333;
+        overflow: hidden;
+        font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+        color: #fff
+    }
+    
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    
+    .more {
+        position: fixed;
+        cursor: pointer;
+        width: 42px;
+        height: 42px;
+        border: 2px solid white;
+        border-radius: 50%;
+        font-size: 15px;
+        line-height: 42px;
+        text-align: center;
+    }
+    
+    .media-wrap {
+        overflow: hidden;
+        position: fixed;
+        bottom: 1.5rem;
+        left: 1.5rem;
+        z-index: 10000;
+        width: 8rem;
+        height: 3.5rem;
+        font-size: 1.6rem;
+    }
+    
+    .media-wrap #musicBtnTxt {
+        float: right;
+        height: 3rem;
+        width: 4rem;
+        line-height: 3rem;
+        text-align: center;
+        color: #fff;
+        font-size: 2rem;
+    }
+    
+    .media-wrap .music-btn {
+        float: left;
+        width: 3.4rem;
+        height: 3.4rem;
+        background: url('img/music-icon.png');
+        background-size: cover;
+    }
+    
+    .musicOn {
+        -webkit-animation: reverseRotate 2.5s linear infinite;
+    }
+    /*旋转动画*/
+    
+    @-webkit-keyframes reverseRotate {
+        0% {
+            -webkit-transform: rotateZ(0deg);
+        }
+        100% {
+            -webkit-transform: rotateZ(-360deg);
+        }
+    }
+</style>
+
+<body>
+    <!--音乐按钮-->
+    <aside class="media-wrap">
+        <span id="musicBtnTxt" style="display: none;">关闭</span>
+        <span id="musicBtn" class="music-btn musicOn"></span>
+    </aside>
+    <div class="more">
+        <a href="http://www.baidu.com">更多</a>
+    </div>
+    <div id="code">有人说爱情可以让人失去生命，但我不会。我要留着这条命为你擦去嘴角的面渣；我要留着这条命去买你喜欢的玫瑰花；我要留着这条命拂去你眼角的泪水；我要留着这条命去撑起你的快乐天堂；如果有一天你找到了心中的他，我会爬上山崖，为你去摘那朵你心中的花！我想和你一起过平淡的生活......清晨可以看到你的笑脸和餐桌上的牛奶煎蛋，然后一起出门，很努力地工作，下班去超市买菜，一起回家做晚饭，夕阳下牵手散步......一直到老！</div>
+</body>
+<script>
+    Element.prototype.typewriter = function(a) {
+        var d = this,
+            c = d.innerHTML,
+            b = 0;
+        d.innerHTML = "";
+        var e = setInterval(function() {
+            var f = c.substr(b, 1);
+            if (f == "<") {
+                b = c.indexOf(">", b) + 1
+            } else {
+                b++
+            }
+            d.innerHTML = c.substring(0, b) + (b & 1 ? "_" : "");
+            if (b >= c.length) {
+                clearInterval(e)
+            }
+        }, 150)
+        return this
+
+    }
+    document.getElementById("code").typewriter();
+</script>
+
+</html>

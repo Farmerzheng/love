@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body,
+    html {
+        background-color: #ddd;
+        height: 100vw;
+    }
+    
+    .post {
+        width: 90vw;
+        max-width: 400px;
+        height: 250px;
+        background-color: #fff;
+        text-align: center;
+        color: #666;
+        font-size: 22px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        box-shadow: 0 3px 9px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .post header {
+        background: #222 url(https://pbs.twimg.com/profile_banners/66071794/1459547414/1500x500) top center no-repeat;
+        background-size: cover;
+        height: 100px;
+        position: relative;
+    }
+    
+    .post header img {
+        width: 100px;
+        border-radius: 50%;
+        position: absolute;
+        top: 30px;
+        left: 10px;
+    }
+    
+    .post header a {
+        position: absolute;
+        right: 20px;
+        bottom: 5px;
+        font-size: 16px;
+        font-style: italic;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .post p {
+        margin: 50px 0 0 0
+    }
+    
+    .post .like {
+        color: #666;
+        text-decoration: none;
+        font-size: 40px;
+        transition: all 0.3s
+    }
+    
+    .post .like:hover {
+        color: #755
+    }
+    
+    .post .active {
+        color: #d02 !important;
+        text-shadow: #faa 0 0 16px;
+    }
+</style>
+
+<body>
+    <script src="https://wow.techbrood.com/libs/jquery/jquery-1.11.1.min.js"></script>
+    <div class="post">
+        <header>
+            <img src="/assets/coolgirl.jpg" alt="" />
+            <a href="https://twitter.com/nodws" target="_b">@wow girl</a>
+        </header>
+        <p>Like this post, it is awesome</p>
+        <a href="#" class="like">&#10084;</a>
+    </div>
+</body>
+<script>
+    var anchors = document.querySelectorAll('a.like')
+
+    Array.prototype.forEach.call(anchors, function(anchor) {
+        anchor.addEventListener('click', explode)
+    })
+
+    function explode(e) {
+        [].map.call(anchors, function(el) {
+            el.classList.toggle('active');
+        });
+        var x = e.clientX
+        var y = e.clientY
+        var c = document.createElement('canvas')
+        var ctx = c.getContext('2d')
+        var ratio = window.devicePixelRatio
+        var particles = []
+
+        document.body.appendChild(c)
+
+        c.style.position = 'absolute'
+        c.style.left = (x - 50) + 'px'
+        c.style.top = (y - 50) + 'px'
+        c.style.pointerEvents = 'none'
+        c.style.width = 100 + 'px'
+        c.style.height = 100 + 'px'
+        c.width = 100 * ratio
+        c.height = 100 * ratio
+
+        function Particle() {
+            return {
+                x: c.width / 2,
+                y: c.height / 2,
+                radius: 10,
+                color: 'rgb(' + [r(100, 255), r(100, 255), r(100, 255)].join(',') + ')',
+                rotation: r(0, 360, true),
+                speed: 4,
+                friction: 0.9,
+                opacity: r(0, 0.5, true),
+                yVel: 0,
+                gravity: 0
+            }
+        }
+
+        for (var i = 0; ++i < 15;) {
+            particles.push(Particle())
+        }
+
+
+
+        function render() {
+            ctx.clearRect(0, 0, c.width, c.height)
+
+            particles.forEach(function(p, i) {
+
+                angleTools.moveOnAngle(p, p.speed)
+
+                p.opacity -= 0.01
+                p.speed *= p.friction
+                p.radius *= p.friction
+
+                p.yVel += p.gravity
+                p.y += p.yVel
+
+                if (p.opacity < 0) return
+                if (p.radius < 0) return
+
+                ctx.beginPath()
+                ctx.globalAlpha = p.opacity
+                ctx.fillStyle = p.color
+                ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI, false)
+                ctx.fill()
+            })
+        }
+
+        ;
+        (function renderLoop() {
+            requestAnimationFrame(renderLoop)
+            render()
+        })()
+
+        setTimeout(function() {
+            document.body.removeChild(c)
+        }, 3000)
+    }
+
+    var angleTools = {
+        getAngle: function(t, n) {
+            var a = n.x - t.x,
+                e = n.y - t.y;
+            return Math.atan2(e, a) / Math.PI * 180
+        },
+        getDistance: function(t, n) {
+            var a = t.x - n.x,
+                e = t.y - n.y;
+            return Math.sqrt(a * a + e * e)
+        },
+        moveOnAngle: function(t, n) {
+            var a = this.getOneFrameDistance(t, n);
+            t.x += a.x, t.y += a.y
+        },
+        getOneFrameDistance: function(t, n) {
+            return {
+                x: n * Math.cos(t.rotation * Math.PI / 180),
+                y: n * Math.sin(t.rotation * Math.PI / 180)
+            }
+        }
+    };
+
+    function r(a, b, c) {
+        return parseFloat((Math.random() * ((a ? a : 1) - (b ? b : 0)) + (b ? b : 0)).toFixed(c ? c : 0));
+    }
+</script>
+
+</html>

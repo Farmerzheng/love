@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+
+<head>
+    <meta charset="utf-8">
+    <title>情书是我抄的，但我爱你是真的</title>
+
+    <script>
+        //判断客户端设备，选择写入meta
+        function init_viewport() {
+            if (navigator.userAgent.indexOf('Android') != -1) {
+                var version = parseFloat(RegExp.$1);
+                if (version > 2.3) {
+                    var width = window.outerWidth == 0 ? window.screen.width : window.outerWidth;
+                    var phoneScale = parseInt(width) / 500;
+                    document.write('<meta name="viewport" content="width=500, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+                } else {
+                    document.write('<meta name="viewport" content="width=500, target-densitydpi=device-dpi, user-scalable=0">');
+                }
+            } else if (navigator.userAgent.indexOf('iPhone') != -1) {
+                var phoneScale = parseInt(window.screen.width) / 500;
+                document.write('<meta name="viewport" content="width=500, min-height=750, initial-scale=' + phoneScale + ', maximum-scale=' + phoneScale + ', user-scalable=0" /> '); //0.75   0.82
+            } else {
+                document.write('<meta name="viewport" content="width=500, height=750, initial-scale=0.64" /> '); //0.75  0.82
+            }
+        }
+        init_viewport();
+
+        document.ontouchmove = function(e) { //阻止默认的移屏事件
+            e.preventDefault();
+        }
+    </script>
+    <meta name="viewport" content="width=500, min-height=750, initial-scale=0.828, maximum-scale=0.828, user-scalable=0">
+
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            -webkit-box-sizing: border-box;
+        }
+        
+        body {
+            background-color: white;
+        }
+        
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        #div_container {
+            /*最外层div，用于居中兼容PC和移动*/
+            width: 500px;
+            margin: 0px auto;
+            position: relative;
+            /*background-color: #FAFAFA;*/
+            font-size: 1em;
+        }
+        
+        #div_music_albumun {
+            width: 500px;
+            height: 880px;
+            position: relative;
+            overflow: hidden;
+            display: none;
+            background-color: white;
+        }
+        
+        #div_music_albumun #img_ma_bg {
+            /*适应屏幕尺寸*/
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+        
+        @-webkit-keyframes text_bling {
+            from {
+                -webkit-transform: scale(1);
+            }
+            to {
+                -webkit-transform: scale(1.04);
+            }
+        }
+        
+        #div_ma_text {
+            width: 500px;
+            height: 100px;
+            padding: 0 30px;
+            position: fixed;
+            bottom: 20px;
+            text-align: justify;
+            line-height: 1.2em;
+            font: 1.3em "Microsoft YaHei", "微软雅黑", "Arial";
+            text-shadow: 1px 2px 2px #000;
+            color: #fff;
+            z-index: 99;
+            -webkit-animation: text_bling 1s linear infinite alternate;
+            /*display: none;*/
+        }
+        
+        #div_start_bg {
+            width: 500px;
+            height: 100%;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            z-index: 44;
+            background-color: white;
+        }
+        
+        #div_ma_end {
+            display: none;
+            width: 500px;
+            height: 100%;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            z-index: 44;
+        }
+        
+        #div_ma_end .div_ma_restart {
+            position: absolute;
+            left: 0;
+            right: 0;
+            /*4个方向定位使div充满整个画画*/
+            top: 0;
+            bottom: 0;
+            /*4个方向定位使div充满整个画画*/
+            width: 500px;
+            background: rgba(255, 255, 255, 0.9);
+            /*半透明效果*/
+            padding: 250px 150px;
+            text-align: center;
+            font-size: 1.6em;
+        }
+    </style>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <!-- 此模板的主要动画css -->
+    <link rel="stylesheet" type="text/css" href="css/ma_meteor_wishes.css">
+
+
+    <!-- 按钮部分的样式 -->
+    <link type="text/css" rel="stylesheet" href="css/theme_public_btn.css">
+
+
+    <!-- 按需加载，选择此片头时方才加载 -->
+    <link type="text/css" rel="stylesheet" href="css/start_loveformat.css">
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body style="">
+    <div id="div_container">
+        <div id="div_start_bg"></div>
+        <!-- 用于遮挡主题，作为片头的背景 -->
+
+        <!-- 按需加载，选择此片头时方才加载 -->
+        <div class="div_loveformat" style="height: 888px; display: block;">
+            <img class="img_lf_bg_big" src="img/blackboard_big.jpg">
+            <img class="img_lf_bg" src="img/blackboard.jpg">
+            <canvas id="img_up_half" class="" width="500" height="815"></canvas>
+            <span class="span_lf_text" id="span_tips_btn">点击查看提示</span>
+            <span class="span_lf_text" id="span_tips">动动手指，抹掉公式的上半部分试试</span>
+            <div id="div_lf_mask"></div>
+        </div>
+
+        <!-- 按需加载，选择此片头时方才加载 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- 以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头 -->
+        <!-- 以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头 -->
+        <!-- 以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头 -->
+        <!-- 以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头 -->
+        <!-- 以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头  以上是动画和视频片头 -->
+
+
+
+
+
+
+
+
+        <!-- 以下为动画主体播放部分 以下为动画主体播放部分 以下为动画主体播放部分 以下为动画主体播放部分 -->
+        <div id="div_music_albumun" class="div_music_albumun" style="height: 889px;">
+            <img id="img_ma_bg" src="img/s.jpg" style="position:absolute;top:0px;left:0px;">
+
+            <img src="img/1.png" style="position:absolute;top:100px;left:500px;-webkit-animation: liuxing 5s ease-in 1s infinite;">
+            <img src="img/1.png" style="position:absolute;top:200px;left:500px;-webkit-animation: liuxing 5s ease-in 2s infinite;">
+            <img src="img/1.png" style="position:absolute;top:300px;left:500px;-webkit-animation: liuxing 5s ease-in infinite;z-index: 66;">
+            <img src="img/1.png" style="position:absolute;top:0px;left:500px;-webkit-animation: liuxing 5s ease-in 1.5s infinite;">
+            <img src="img/1.png" style="position:absolute;top:400px;left:500px;-webkit-animation: liuxing 5s ease-in 3s infinite;">
+            <img src="img/1.png" style="position:absolute;top:500px;left:500px;-webkit-animation: liuxing 5s ease-in 4s infinite;z-index: 66;">
+
+            <div id="ipresenter">
+                <div id="xuandiv1" class="step" data-x="0" data-y="0" data-pausetime="6500">
+                    <img id="xuanimg1" width="400">
+                </div>
+                <div id="xuandiv2" class="step" data-x="1500" data-y="0" data-rotatex="180" data-easing="easeInOutQuint" data-pausetime="6500">
+                    <img id="xuanimg2" width="400">
+                </div>
+                <div id="xuandiv3" class="step" data-x="3000" data-y="0" data-rotatey="180" data-pausetime="6500">
+                    <img id="xuanimg3" width="400">
+                </div>
+                <div id="xuandiv4" class="step" data-x="4500" data-y="0" data-rotatex="180" data-pausetime="6500">
+                    <img id="xuanimg4" width="400">
+                </div>
+                <div id="xuandiv5" class="step" data-x="6000" data-y="0" data-rotate="180" data-pausetime="6500">
+                    <img id="xuanimg5" width="400">
+                </div>
+                <div id="xuandiv6" class="step" data-x="7500" data-y="0" data-rotatey="180" data-pausetime="6500">
+                    <img id="xuanimg6" width="400">
+                </div>
+                <div id="xuandiv7" class="step" data-x="9000" data-y="0" data-pausetime="6500">
+                    <img id="xuanimg7" width="400">
+                </div>
+                <div id="xuandiv8" class="step" data-x="10500" data-y="0" data-rotate="80" data-pausetime="6500">
+                    <img id="xuanimg8" width="400">
+                </div>
+                <div id="xuandiv9" class="step" data-x="12000" data-y="0" data-rotatex="180" data-pausetime="6500">
+                    <img id="xuanimg9" width="400">
+                </div>
+                <div id="xuandiv10" class="step" data-x="13500" data-y="0" data-rotatey="180" data-pausetime="6500">
+                    <img id="xuanimg10" width="400">
+                </div>
+                <div id="xuandiv11" class="step" data-x="13000" data-y="0" data-rotatey="-180" data-pausetime="6500">
+                    <img id="xuanimg11" width="400">
+                </div>
+                <div id="xuandiv12" class="step" data-x="16500" data-y="0" data-rotatey="180" data-pausetime="6500">
+                    <img id="xuanimg12" width="400">
+                </div>
+            </div>
+
+            <div id="pagetitle" style="position:absolute;width:420px;height:200px;top:280px;left:40px;padding-left:10px;padding-right:10px;font-size:3em;color:#fff;text-shadow:1px 1px 1px #000;text-align:center;">
+                <div id="titlecontent" style="display:table-cell;vertical-align:middle;"></div>
+            </div>
+        </div>
+        <!-- 以上为动画主体播放部分 以上为动画主体播放部分 以上为动画主体播放部分 以上为动画主体播放部分 -->
+
+
+
+
+
+
+        <div id="div_ma_text"> </div>
+        <!-- 文字部分 -->
+
+        <div id="div_ma_end">
+            <!-- 终止循环部分，用于遮挡主题 -->
+            <div class="div_ma_restart" onclick="ma_restart()">
+                <img src="img/icon_restart.png"><br> 重新播放
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div id="div_btn_container">
+            <!-- 按钮部分的最外层，处于文档流之中 -->
+            <div id="div_btn_inner">
+                <!-- 按钮部分内层，用于定位 -->
+
+                <div class="div_music_tips"></div>
+                <div class="div_btn" id="div_music" onclick="music_switch()">
+                    <!-- 音乐按钮部分 -->
+                    <img id="img_music" src="img/music_note_big.png" style="-webkit-animation:music_play_rotate 1s linear infinite">
+                    <audio id="audio_music" autoplay="autoplay" loop="loop" src="media/love.mp3">
+                        <source type="audio/mpeg">  
+                        <!-- 您的浏览器不支持播放音乐 -->
+                    </audio>
+                </div>
+
+                <div class="div_record_tips"></div>
+                <div class="div_btn" id="div_record" onclick="record_switch()">
+                    <!-- 录音按钮部分 -->
+                    语音
+                    <audio id="audio_record" loop="loop" src="media/2.mp3">
+                        <source type="audio/mpeg">  
+                        <!-- 您的浏览器不支持播放音乐 -->
+                    </audio>
+                </div>
+
+                <!-- 只在提交状态显示 只在提交状态显示 只在提交状态显示 只在提交状态显示 -->
+                <div class="div_btn" id="div_support">
+                    <a href="/Home/Support/index/ws/YGdllmhp"><span>更多</span></a>
+                </div>
+                <!-- 只在提交状态显示 只在提交状态显示 只在提交状态显示 只在提交状态显示 -->
+
+                <!-- 只在未提交状态显示 只在未提交状态显示 只在未提交状态显示 只在未提交状态显示 -->
+
+                <!-- 只在未提交状态显示 只在未提交状态显示 只在未提交状态显示 只在未提交状态显示 -->
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- 动画主体播放及打字效果 -->
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/typed.min.js"></script>
+    <script src="js/support_upload_as.js"></script>
+    <script src="js/ipresenter.packed.js"></script>
+    <script>
+        //不允许标题为空
+        var main_title = "null";
+        if (main_title == '' || main_title == 'null') {
+            document.title = '情书是我抄的，但我爱你是真的';
+            main_title = '情书是我抄的，但我爱你是真的';
+        }
+
+        var window_height = Math.max(window.innerHeight, document.documentElement.clientHeight, document.body.clientHeight, $(window).height());
+        console.log('window_height ->' + window_height);
+        $('#div_music_albumun').height(window_height); //bg适应屏幕尺寸
+
+        var theme = 'meteor_wishes';
+        console.log('theme ->' + theme);
+        var theme_content = {
+            "bool_save": false
+        };
+        console.log(theme_content);
+
+        var music_json = {
+            "bool_save": false
+        };
+        console.log(music_json);
+        var record_json = {
+            "bool_save": false
+        };
+        console.log(record_json);
+        var signPackage = {
+            "appid": "wx47f716bdd7699533",
+            "timestamp": 1634134828,
+            "nonceStr": "FHo4QTGZETicpViv",
+            "url": "http:\/\/www.makusi.cn\/Home\/Play\/play_show\/ws\/YGdllmhp",
+            "signature": "fb463674330ed520df2e20c7eab9362a5ae7f200",
+            "rawString": "jsapi_ticket=sM4AOVdWfPE4DxkXGEs8VHINcjHJVwMsFjJyfreRy7DGJmuxYXMA8c8tto0cuncJkxWEYeZ52f7Gb6dxD-Sryg&noncestr=FHo4QTGZETicpViv&timestamp=1634134828&url=http:\/\/www.makusi.cn\/Home\/Play\/play_show\/ws\/YGdllmhp"
+        };
+
+        var m_album_loop = theme_content['m_album_loop']; //读取循环设置        
+        if (typeof(m_album_loop) == 'undefined') { //处理全新作品
+            m_album_loop = 'loop_n'; //默认是不循环
+        }
+
+
+        //____________________________________________________________________________________
+        //获取自定义文字 或设置模板文字 获取自定义文字 或设置模板文字 获取自定义文字 或设置模板文字 
+        var m_album_text = theme_content['m_album_text'];
+        if (typeof(m_album_text) == 'undefined') { //处理全新作品
+            var m_album_text = [];
+            random_text_array(m_album_text, 12); //获取随机的模板文字 
+        }
+        console.log(m_album_text);
+        console.log('m_album_text.length->' + m_album_text.length);
+
+        var text_index = 0;
+        var div_ma_text = document.getElementById('div_ma_text');
+
+        function show_text_loop() {
+            var str = m_album_text[text_index];
+            console.log('str->' + str);
+            if (str == '' || str == false || str == null) {
+                str = '…';
+            }
+            var array_str = str.split('');
+            for (var i = 0; i < array_str.length; i++) {
+                type_words(str, i);
+            }
+            text_index++;
+            if (text_index > m_album_text.length - 1) {
+                text_index = 0;
+            }
+        }
+
+        function type_words(str, i) {
+            // console.log('type_words->'+str+' i->'+i);
+            setTimeout(function() {
+                div_ma_text.innerHTML = str.slice(0, i + 1);
+            }, i * 100);
+        }
+
+        function random_text_array(temp_array, length) { //获取随机的模板图片
+            console.log('random_text_array');
+            var random_array = [];
+            while (random_array.length < length) {
+                // var random_num=Math.floor(Math.random()*(array_as_pics.length-0))+0;
+                var random_num = Math.floor(Math.random() * (array_as_words_love.length)); //随机取值 
+                if (random_array.indexOf(random_num) == -1) {
+                    random_array.push(random_num);
+                }
+            }
+            // console.log(random_array);
+            for (var i = 0; i < length; i++) {
+                temp_array.push(array_as_words_love[random_array[i]]); //获取随机的模板图片
+            }
+        }
+        //____________________________________________________________________________________
+        //获取自定义文字 或设置模板文字 获取自定义文字 或设置模板文字 获取自定义文字 或设置模板文字
+
+
+
+
+        //____________________________________________________________________________________
+        //获取自定义图片 或设置模板图片 获取自定义图片 或设置模板图片 获取自定义图片 或设置模板图片 
+        var m_album_img = theme_content['m_album_img'];
+        if (typeof(m_album_img) == 'undefined') { //处理全新作品
+            var m_album_img = [];
+            random_img_array(m_album_img, 12); //获取随机的模板图片 
+        }
+        var array_img_url = [];
+        for (var x = 0; x < m_album_img.length; x++) { //取出有效图片
+            var img_temp = m_album_img[x];
+            if (img_temp != '' && img_temp != null) { //只取非空值
+                array_img_url.push(img_temp);
+            }
+        }
+        if (array_img_url.length == 0) { //针对“保存过内容，但没有保存图片”的情况 
+            random_img_array(array_img_url, 12); //获取随机的模板图片  
+            m_album_text = []; //没有添加图片，必定也无法保存文字
+            random_text_array(m_album_text, 12); //获取随机的模板文字 
+            console.log(m_album_text);
+        }
+
+        function random_img_array(temp_array, length) { //获取随机的模板图片
+            console.log('random_img_array');
+            var random_array = [];
+            while (random_array.length < length) {
+                // var random_num=Math.floor(Math.random()*(array_as_pics.length-0))+0;
+                var random_num = Math.floor(Math.random() * (array_as_pics.length)); //随机取值 
+                if (random_array.indexOf(random_num) == -1) {
+                    random_array.push(random_num);
+                }
+            }
+            // console.log(random_array);
+            for (var i = 0; i < length; i++) {
+                temp_array.push(array_as_pics[random_array[i]]); //获取随机的模板图片
+            }
+        }
+        console.log(array_img_url);
+        //____________________________________________________________________________________
+        //获取自定义图片 或设置模板图片 获取自定义图片 或设置模板图片 获取自定义图片 或设置模板图片 
+
+
+        function ma_restart() { //点击重播之后刷新页面
+            location.reload();
+        }
+
+
+
+
+
+
+        //____________________________________________________________________________________
+        //动画主体部分   动画主体部分   动画主体部分   动画主体部分   动画主体部分
+        var begin_titletime;
+
+        function showtitle() {
+            console.log('showtitle');
+            begin_titletime = new Date().getTime();
+            var content = id('titlecontent');
+            content.innerHTML = main_title;
+            id('pagetitle').style.webkitAnimation = 'fadein .5s linear both';
+            init_attachment();
+        }
+
+        var image_size_width = [];
+        var image_size_height = [];
+        var image_ready_num = 0;
+        var image_url_index = 0;
+        var have_num = 0;
+        var Onload_imgs_url = [];
+
+        var delaytime = 5200;
+        var timeout1;
+        var timeout2;
+        var timeout3;
+        var pageindex = 1;
+
+        function load_images() {
+            // console.log('load_images');
+            image_size_width = [];
+            image_size_height = [];
+            image_ready_num = 22;
+            image_url_index = 0;
+            have_num = 0;
+            Onload_imgs_url = [];
+
+            clearTimeout(timeout1);
+            clearTimeout(timeout2);
+            clearTimeout(timeout3);
+
+            for (var i = 0; i < array_img_url.length; i++) {
+                preload_images(i);
+            }
+        }
+
+
+        function preload_images(image_index) {
+            setTimeout(function() {
+                var img = new Image();
+                img.index = image_index;
+                console.log('image_index_' + image_index + '->' + array_img_url[image_index]);
+                img.src = array_img_url[image_index];
+                img.onload = image_onload;
+                // img.onerror = image_onerror;
+            }, image_index * 250);
+        }
+
+        function image_onload(event) {
+            // console.log('image_onload');
+            var img = event.target;
+            var index = img.index;
+
+            if (index < 22) {
+                Onload_imgs_url[index] = img.src;
+                image_size_height[index] = img.height;
+                image_size_width[index] = img.width;
+                have_num++;
+            } else {
+                Onload_imgs_url[image_ready_num] = img.src;
+                image_size_width[image_ready_num] = img.width;
+                image_size_height[image_ready_num] = img.height;
+                image_ready_num++;
+            }
+
+            if ((have_num >= 22 || array_img_url.length == have_num)) {
+                console.log('have_num->' + have_num);
+                var end_titletime = new Date().getTime();
+                var dis_titletime = Math.abs(end_titletime - begin_titletime);
+                if (dis_titletime > delaytime) {
+                    distitle();
+                    init_images(); //初始化设置iPresenter之下的div图片
+                    timeout1 = setTimeout(begin_show, 800);
+                } else {
+                    dis_titletime = delaytime - dis_titletime;
+                    timeout1 = setTimeout(function() {
+                        distitle();
+                        init_images(); //初始化设置iPresenter之下的div图片
+                        timeout2 = setTimeout(begin_show, 800);
+                    }, dis_titletime);
+                }
+            }
+        }
+
+        function distitle() {
+            console.log('distitle');
+            id('pagetitle').style.webkitAnimation = 'fadeout 1s linear both';
+        }
+
+        function init_images() {
+            console.log('init_images');
+            for (var i = 1; i < 13; i++) { //12个div之下img设置src
+                var img = id('xuanimg' + i);
+                if (image_url_index == Onload_imgs_url.length) {
+                    image_url_index = 0;
+                }
+                img.src = Onload_imgs_url[image_url_index];
+                image_url_index++;
+            }
+            image_url_index = 0; //初始化轮转播放的图片顺序 
+        }
+
+        function begin_show() {
+            console.log('begin_show');
+            init_iPresenter();
+            set_next_img();
+            timeout3 = setTimeout(function() {
+                show_text_loop();
+            }, 1000);
+        }
+
+        function init_iPresenter() {
+            console.log('init_iPresenter');
+            $(document).ready(function() {
+                $('#ipresenter').iPresenter({
+                    animSpeed: 3000, //切换时间 毫秒
+                    pauseTime: 6500, //每张幻灯片显示时间？？？实际上没用 
+                    onBeforeChange: inter_change, //
+                    timerOpacity: 0, //
+                });
+            });
+            id('ipresenter').style.webkitAnimation = 'fadein 2s ease-in both';
+        }
+
+        function inter_change() {
+            console.log('----------------------------inter_change----------------------------');
+            set_next_img();
+            setTimeout(show_text_loop, 1500);
+
+            if (image_url_index == 0 && m_album_loop == 'loop_n') {
+                console.log('defaulted loop ahead ->' + m_album_loop);
+                setTimeout(function() {
+                    $('#div_ma_text').fadeOut();
+                    $('#div_ma_end').fadeIn();
+                    $('#ipresenter').fadeOut();
+                }, 8000);
+            }
+        }
+
+        // function ended_loop(){
+
+        // } 
+
+        function set_next_img() {
+            console.log('set_next_img id->' + image_url_index + '->' + Onload_imgs_url[image_url_index]);
+
+            if (image_url_index == Onload_imgs_url.length) {
+                image_url_index = 0;
+            }
+            id('xuanimg' + pageindex).src = Onload_imgs_url[image_url_index];
+
+            //提前设置下一张图片
+            var next_pageindex = pageindex + 1;
+            var next_image_url_index = image_url_index + 1;
+            if (next_pageindex == 13) {
+                next_pageindex = 1;
+            }
+            if (next_image_url_index == Onload_imgs_url.length) {
+                next_image_url_index = 0;
+            }
+            id('xuanimg' + (next_pageindex)).src = Onload_imgs_url[next_image_url_index];
+
+            pageindex++;
+            if (pageindex == 13) {
+                pageindex = 1;
+            }
+
+            image_url_index++;
+            if (image_url_index == Onload_imgs_url.length) {
+                image_url_index = 0;
+            }
+        }
+
+
+        function id(name) {
+            return document.getElementById(name);
+        }
+
+
+        // load_images();
+        // showtitle();
+    </script>
+
+
+
+
+
+
+
+    <!-- 按需加载，选择此片头时方才加载 -->
+    <script src="js/jquery.eraser.js"></script>
+
+    <!-- 按需加载，选择此片头时方才加载 -->
+
+
+    <script>
+        var start_content = {
+            "bool_save": false
+        }; //可能为null
+        console.log(start_content);
+
+        $(function() {
+            //此事件为触发互动创意
+            var start_id = 'loveformat'; //可能为null
+            init_start(start_id);
+        });
+
+        function init_start(start_id) {
+            console.log('init_start ->' + start_id);
+            switch (start_id) {
+                case 'loveformat':
+                    $('.div_loveformat').show();
+                    init_loveformat();
+                    break;
+                case 'hearttree':
+                    $('#div_hearttree').show();
+                    init_hearttree();
+                    break;
+                case 'courage':
+                    $('#div_courage').show();
+                    init_courage();
+                    break;
+                case 'birthdaycake':
+                    $('#div_dbcake').show();
+                    init_birthdaycake();
+                    break;
+                case 'intersect':
+                    $('#div_intersect').show();
+                    init_intersect();
+                    break;
+                case 'onlyyou':
+                    $('#div_onlyyou').show();
+                    init_onlyyou();
+                    break;
+                default:
+                    init_theme();
+            }
+        }
+
+        //开始动画主体部分
+        function init_theme() {
+            console.log('init_theme');
+            $('#div_start_bg').fadeOut();
+            $('#div_music_albumun').fadeIn();
+            $('#div_ma_text').show();
+            showtitle();
+            load_images();
+        }
+    </script>
+
+
+
+
+    <!-- 按需加载，选择此片头时方才加载 -->
+    <script src="js/start_loveformat.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        var attachment = 'null'; //可能为null
+        var attached_content = {
+            "bool_save": false
+        }; //可能为null
+        console.log(attached_content);
+
+        function init_attachment() { //开始attachment
+            console.log('init_attachment ->' + attachment);
+            switch (attachment) {
+                case 'timer':
+                    init_at_timer();
+                    break;
+                default:
+                    return;
+            }
+        }
+    </script>
+
+
+
+
+
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <script src="js/theme_common.js"></script>
+    <!-- 音乐控制和微信设置等公共部分js外部引入 -->
+
+    <div id="mbGetImgModule" class="mb-getmaterial-box">
+        <div class="wzy-dialog"></div>
+        <div class="btn-group">
+            <div>
+                <span>采集</span>
+                <svg class="wzyiconxiala" width="200px" height="200.00px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M732.16000001 431.104L535.04 645.12c-6.656 6.656-13.312 9.728-23.04 9.728s-16.384-3.072-23.04-9.728L291.83999999 431.104c-9.728-9.728-13.312-26.112-6.65599999-39.424 6.656-13.31200001 16.384-23.04 29.696-23.04l394.752 0c13.312 0 26.112 9.728 29.696 23.04 6.14399999 13.312 3.072 29.696-7.16799999 39.424z"></path></svg>
+            </div>
+            <p>隐藏采集图片按钮</p>
+        </div>
+    </div>
+</body>
+
+</html>

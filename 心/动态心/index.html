@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: Helvetica, Arial;
+        font-weight: 100;
+        overflow: hidden;
+    }
+    
+    canvas {
+        background-color: rgb(244, 244, 244);
+    }
+    
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+    
+    footer img {
+        border-radius: 100%;
+        width: 30px;
+        height: 30px;
+        margin-left: 10px;
+    }
+    
+    footer span {
+        display: block;
+        padding: 10px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+</style>
+
+<body>
+    <script src="https://wow.techbrood.com/libs/jquery/jquery-1.11.1.min.js"></script>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    //---------- MAIN FUNCTION ----------
+    function init() {
+        renderable = [];
+        path = new Shape(new Heart(), new Point(cw / 2, ch / 2), new Color(244, 244, 244, 1), {
+            scale: 10
+        });
+
+        animate();
+    }
+
+    function animate() {
+        addShape(angle);
+        addShape(angle2);
+        angle += 0.05;
+        angle2 -= 0.05;
+
+        ctx.clearRect(0, 0, cw, ch);
+
+        for (var i = 0; i < renderable.length; i++) {
+            renderable[i].draw(canvas);
+            if (renderable[i].scale <= 0) renderable.splice(i, 1);
+        }
+        path.draw(canvas);
+        requestAnimationFrame(animate);
+    }
+
+    function addShape(angle) {
+
+        renderable.push(new Shape(new Circle(5), new Point(cw / 2, ch / 2), new Color(253, 192, 192, 1), {
+            position: (((path.geometry.getPositionByAngle(angle)).multiply(path.scale)).add(path.position.clone())),
+            decay: 0.1,
+            scale: 3
+        }));
+    }
+
+    //-----------------------------------
+    var canvas, ctx, cw, ch;
+    var FPS = 60;
+    var renderable = [],
+        path,
+        path2,
+        angle = 0,
+        angle2 = 0,
+        color;
+
+    var requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
+        return setTimeout(callback, FPS);
+    };
+
+    window.onload = function() {
+        initCanvas();
+        ctx.clearRect(0, 0, cw, ch);
+        init();
+
+    }
+    window.onresize = function() {
+        initCanvas();
+        ctx.clearRect(0, 0, cw, ch);
+    };
+
+    function initCanvas() {
+        canvas = document.getElementById('canvas');
+        ctx = canvas.getContext('2d');
+        cw = window.innerWidth;
+        ch = window.innerHeight;
+        canvas.width = cw;
+        canvas.height = ch;
+    }
+
+    //---------------- APP UTIL ------------------
+    function getRandomNumber(min, max) {
+        return Math.random() * (max - min + 1) + min;
+    }
+
+
+    //---------- EXTRACT OF MY NEXT FRAMEWORK ------------
+    //----------- PROTOTYPES -------------
+    //===== GEOMETRY =====
+    //----- SHAPE -----
+    function Shape(geometry, position, color, properties) {
+        this.position = (position == null || position.classname != "Point") ? new Point() : position;
+        this.geometry = (geometry == null || geometry.constructor.name != "GenericObject") ? new Circle() : geometry;
+        this.color = (color == null || color.classname != "Color") ? null : color;
+        this.lineColor = null;
+        this.lineWidth = 1;
+        this.scale = 1;
+        this.decay = 0;
+        if (properties != null) this.setProperties(properties);
+        GenericObject.call(this, "Shape");
+    }
+    Shape.prototype = new GenericObject();
+    Shape.prototype.setProperties = function(properties) {
+        for (var p in properties) {
+            this[p] = properties[p];
+        }
+    }
+    Shape.prototype.draw = function(canvas) {
+        if (this.scale > 0) {
+            var ctx = canvas.getContext('2d');
+            var cw = canvas.width;
+            var ch = canvas.height;
+
+            ctx.beginPath();
+            if (this.lineWidth > 0 && (this.lineColor != null && this.lineColor.classname == "Color")) {
+                ctx.strokeStyle = this.lineColor.getRGBA();
+                ctx.lineWidth = this.lineWidth;
+            }
+            if (this.color != null && this.color.classname == "Color") {
+                ctx.fillStyle = this.color.getRGBA();
+            }
+
+            switch (this.geometry.classname) {
+                case "Circle":
+                    ctx.arc(this.position.x, this.position.y, this.geometry.radius * this.scale, 0, Math.PI * 2);
+                    break;
+                case "Heart":
+                    for (var i = 0; i < Math.PI * 2; i += 0.05) {
+                        var p = this.geometry.getPositionByAngle(i);
+                        p.multiply(this.scale);
+                        p.add(this.position);
+                        if (i == 0) ctx.moveTo(p.x, p.y);
+                        else ctx.lineTo(p.x, p.y);
+                    }
+                    break;
+            }
+
+            if (this.lineColor != null && this.lineColor.classname == "Color") ctx.stroke();
+            if (this.color != null) ctx.fill();
+            this.scale -= this.decay;
+        }
+    }
+
+    //----- POINT -----
+    function Point(x, y) {
+        this.x = (x != null && !isNaN(x)) ? x : 0;
+        this.y = (y != null && !isNaN(y)) ? y : 0;
+        GenericObject.call(this, "Point");
+    }
+    Point.prototype = new GenericObject();
+    Point.prototype.add = function(p2) {
+        if (p2.classname != this.classname) return null;
+        this.x += p2.x;
+        this.y += p2.y;
+        return this;
+    }
+    Point.prototype.multiply = function(scale) {
+        this.x *= scale;
+        this.y *= scale;
+        return this;
+    }
+
+
+    //----- CIRCLE -----
+    function Circle(radius) {
+        this.center = new Point();
+        this.radius = (radius != null && !isNaN(radius)) ? radius : 1;
+        GenericObject.call(this, "Circle");
+    }
+    Circle.prototype = new GenericObject();
+
+    //----- HEART -----
+    function Heart(scale) {
+        this.scale = (scale != null && !isNaN(scale)) ? scale : 1;
+        GenericObject.call(this, "Heart");
+    }
+    Heart.prototype = new GenericObject();
+    Heart.prototype.getPositionByAngle = function(angle) {
+        if (angle == null || isNaN(angle)) return null;
+        var x = 16 * Math.pow(Math.sin(angle), 3);
+        var y = -(13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle));
+        return new Point(x * this.scale, y * this.scale);
+    }
+
+
+    //===== COLOR =====
+    function Color(r, g, b, a) {
+        this.r = (r != null || isNaN(r)) ? r : 0;
+        this.g = (g != null || isNaN(g)) ? g : 0;
+        this.b = (b != null || isNaN(b)) ? b : 0;
+        this.a = (a != null || isNaN(a)) ? a : 1;
+        this.hex = this.toHex();
+        GenericObject.call(this, "Color");
+    }
+    Color.prototype = new GenericObject();
+    Color.prototype.toHex = function() {
+        var bin = this.r << 16 | this.g << 8 | this.b;
+        return (function(h) {
+            return "#" + new Array(7 - h.length).join("0") + h
+        })(bin.toString(16).toUpperCase())
+    }
+    Color.prototype.getRGBA = function() {
+        return "rgba(" + this.r + "," + this.g + "," + this.b + "," + this.a + ")";
+    }
+    Color.prototype.setHex = function(hex) {
+        this.r = hex >> 16;
+        this.g = hex >> 8 & 0xFF;
+        this.b = hex & 0xFF;
+        this.hex = this.toHex();
+    }
+
+    //===== GENERICOBJECT =====
+    function GenericObject(name) {
+        this.classname = name;
+    }
+    GenericObject.prototype.clone = function() {
+        var copy = new GenericObject(this.classname);
+        for (var attr in this) {
+            if (this.hasOwnProperty(attr)) {
+                if (this[attr].constructor.name == "GenericObject") copy[attr] = this[attr].clone();
+                else copy[attr] = this[attr];
+            }
+        }
+        return copy;
+    }
+</script>
+
+</html>

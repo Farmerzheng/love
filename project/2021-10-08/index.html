@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='js/rem.js'></script>
+    <title>💕💕💕</title>
+</head>
+<style>
+    *,
+    *:before,
+    *:after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+    html,
+    body {
+        font-size: 62.5%;
+    }
+    
+    body {
+        background: #63bdf7;
+        overflow: hidden;
+    }
+    
+    .demo {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        /* margin-left: -15.3rem; */
+        /* margin-top: -27rem; */
+        background: #f1f1f1;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.8);
+    }
+    
+    .demo__header {
+        /* height: 6rem;
+        background: #002942; */
+    }
+    
+    .demo__content {
+        overflow: hidden;
+        position: relative;
+        height: 82vh;
+        width: 84vw;
+        margin-top: 4vh;
+        margin-left: 8vw;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        box-shadow: 1px 1px 20px #999;
+    }
+    
+    .demo__card-cont {
+        /* position: relative;
+        width: 24rem;
+        height: 32rem; */
+        margin: 0 auto 5rem;
+    }
+    
+    .demo__card {
+        /* background-color: red; */
+        z-index: 2;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transform-origin: 50% 100%;
+        -ms-transform-origin: 50% 100%;
+        transform-origin: 50% 100%;
+        overflow: hidden;
+    }
+    
+    .demo__card.reset {
+        -webkit-transition: -webkit-transform 0.3s;
+        transition: transform 0.3s;
+        -webkit-transform: translateX(0) !important;
+        -ms-transform: translateX(0) !important;
+        transform: translateX(0) !important;
+    }
+    
+    .demo__card.reset .demo__card__choice {
+        -webkit-transition: opacity 0.3s;
+        transition: opacity 0.3s;
+        opacity: 0 !important;
+    }
+    
+    .demo__card.inactive {
+        -webkit-transition: -webkit-transform 0.3s;
+        transition: transform 0.3s;
+    }
+    
+    .demo__card.to-left {
+        -webkit-transform: translateX(-30rem) rotate(-30deg) !important;
+        -ms-transform: translateX(-30rem) rotate(-30deg) !important;
+        transform: translateX(-30rem) rotate(-30deg) !important;
+    }
+    
+    .demo__card.to-right {
+        -webkit-transform: translate(30rem) rotate(30deg) !important;
+        -ms-transform: translate(30rem) rotate(30deg) !important;
+        transform: translate(30rem) rotate(30deg) !important;
+    }
+    
+    .demo__card.below {
+        z-index: 1;
+    }
+    
+    .demo__card__top {
+        height: 20.5rem;
+        padding-top: 4rem;
+    }
+    
+    .demo__card:nth-child(1) {
+        background-image: url(img/1.jpg);
+        background-size: cover;
+    }
+    
+    .demo__card:nth-child(2) {
+        background-image: url(img/2.jpg);
+        background-size: cover;
+    }
+    
+    .demo__card:nth-child(3) {
+        background-image: url(img/3.jpg);
+        background-size: cover;
+    }
+    
+    .demo__card:nth-child(4) {
+        background-image: url(img/4.jpg);
+        background-size: cover;
+    }
+    
+    .demo__card:nth-child(5) {
+        background-image: url(img/5.jpg);
+        background-size: cover;
+    }
+    
+    .demo__card:nth-child(6) {
+        background-image: url(img/6.jpg);
+        background-size: cover;
+    }
+    
+    .demo__card:nth-child(7) {
+        background-image: url(img/7.jpg);
+        background-size: cover;
+    }
+    
+    .demo__card:nth-child(8) {
+        background-image: url(img/8.jpg);
+        background-size: cover;
+    }
+    
+    .demo__card:nth-child(9) {
+        background-image: url(img/9.jpg);
+        background-size: cover;
+    }
+    
+    .demo__card:nth-child(10) {
+        background-image: url(img/10.jpeg);
+        background-size: cover;
+    }
+    /* .demo__card__top.blue {
+        background: #248cb6;
+    }
+    
+    .demo__card__top.indigo {
+        background: #303f9f;
+    }
+    
+    .demo__card__top.cyan {
+        background: #26c6da;
+    }
+    
+    .demo__card__top.lime {
+        background: #afb42b;
+    }
+    
+    .demo__card__top.brown {
+        background: #795548;
+    }
+     */
+    
+    .demo__card__img {
+        display: none;
+        overflow: hidden;
+        width: 10rem;
+        height: 10rem;
+        margin: 0 auto 1.5rem;
+        border-radius: 50%;
+        border: 0.5rem solid #fff;
+        /* background-image: url("http://i.imgur.com/udTln22.png"); */
+        background-size: cover;
+    }
+    
+    .demo__card__name {
+        display: none;
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #fff;
+    }
+    
+    .demo__card__btm {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4rem;
+        background: #f8f8f8;
+    }
+    
+    .demo__card__we {
+        text-align: center;
+        font-size: 1.8rem;
+        line-height: 4rem;
+        color: #666;
+    }
+    
+    .demo__card__choice {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+    
+    .demo__card__choice:before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 2rem;
+        height: 2rem;
+        margin-left: -1rem;
+        color: #fff;
+        border-radius: 50%;
+        box-shadow: -2rem -3rem #fff, 2rem -3rem #fff;
+    }
+    
+    .demo__card__choice:after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 4rem;
+        height: 1.5rem;
+        margin-left: -2rem;
+        border: 0.6rem solid #fff;
+        border-bottom: none;
+        border-top-left-radius: 1.5rem;
+        border-top-right-radius: 1.5rem;
+    }
+    
+    .demo__card__choice.m--reject {
+        background: #ff945a;
+    }
+    
+    .demo__card__choice.m--like {
+        background: #b1da96;
+    }
+    
+    .demo__card__choice.m--like:after {
+        -webkit-transform: scaleY(-1);
+        -ms-transform: scaleY(-1);
+        transform: scaleY(-1);
+    }
+    
+    .demo__card__drag {
+        z-index: 5;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        cursor: -webkit-grab;
+        cursor: grab;
+    }
+    
+    .demo__tip {
+        text-align: center;
+        font-size: 2.2rem;
+    }
+    
+    .more {
+        position: fixed;
+        right: .3rem;
+        top: 5rem;
+        z-index: 10000;
+        text-decoration: none;
+        border-radius: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: inline-block;
+        background-color: rgba(0, 0, 0, .3);
+        color: #fff;
+        font-size: .6rem;
+        line-height: 1.5rem;
+        text-align: center;
+        border: 2px solid #fff;
+    }
+</style>
+<script src='js/jquery-2.1.1.min.js'></script>
+
+<body>
+    <!-- 更多 -->
+    <a class="more" href="https://mp.weixin.qq.com/s/tCcKtcGztWX5g6Say-np2g">更多</a>
+    <!-- 背景音乐 -->
+    <audio id='ad' loop controls="controls" style='display: none;'>
+        <source  src="media/1.mp3" type="audio/mpeg" />
+     </audio>
+
+    <script>
+        $(document).ready(function() {
+
+            $('#ad')[0].onloadedmetadata = function() {
+                this.play();
+                console.log('打开摄像头');
+            };
+        });
+    </script>
+    <div class="demo">
+        <header class="demo__header"></header>
+        <div class="demo__content">
+            <div class="demo__card-cont">
+                <div class="demo__card">
+                    <div class="demo__card__top brown">
+                        <div class="demo__card__img"></div>
+                        <p class="demo__card__name">Hungry cat 10</p>
+                    </div>
+                    <div class="demo__card__btm">
+                        <p class="demo__card__we">十步及尔偕老</p>
+                    </div>
+                    <div class="demo__card__choice m--reject"></div>
+                    <div class="demo__card__choice m--like"></div>
+                    <div class="demo__card__drag"></div>
+                </div>
+                <div class="demo__card">
+                    <div class="demo__card__top brown">
+                        <div class="demo__card__img"></div>
+                        <p class="demo__card__name">Hungry cat 9</p>
+                    </div>
+                    <div class="demo__card__btm">
+                        <p class="demo__card__we">九步共白头</p>
+                    </div>
+                    <div class="demo__card__choice m--reject"></div>
+                    <div class="demo__card__choice m--like"></div>
+                    <div class="demo__card__drag"></div>
+                </div>
+                <div class="demo__card">
+                    <div class="demo__card__top brown">
+                        <div class="demo__card__img"></div>
+                        <p class="demo__card__name">Hungry cat 8</p>
+                    </div>
+                    <div class="demo__card__btm">
+                        <p class="demo__card__we">八步不离不弃</p>
+                    </div>
+                    <div class="demo__card__choice m--reject"></div>
+                    <div class="demo__card__choice m--like"></div>
+                    <div class="demo__card__drag"></div>
+                </div>
+                <div class="demo__card">
+                    <div class="demo__card__top brown">
+                        <div class="demo__card__img"></div>
+                        <p class="demo__card__name">Hungry cat 7</p>
+                    </div>
+                    <div class="demo__card__btm">
+                        <p class="demo__card__we">七步相守</p>
+                    </div>
+                    <div class="demo__card__choice m--reject"></div>
+                    <div class="demo__card__choice m--like"></div>
+                    <div class="demo__card__drag"></div>
+                </div>
+                <div class="demo__card">
+                    <div class="demo__card__top brown">
+                        <div class="demo__card__img"></div>
+                        <p class="demo__card__name">Hungry cat 6</p>
+                    </div>
+                    <div class="demo__card__btm">
+                        <p class="demo__card__we">六步相随</p>
+                    </div>
+                    <div class="demo__card__choice m--reject"></div>
+                    <div class="demo__card__choice m--like"></div>
+                    <div class="demo__card__drag"></div>
+                </div>
+                <div class="demo__card">
+                    <div class="demo__card__top lime">
+                        <div class="demo__card__img"></div>
+                        <p class="demo__card__name">Hungry cat 5</p>
+                    </div>
+                    <div class="demo__card__btm">
+                        <p class="demo__card__we">五步相爱</p>
+                    </div>
+                    <div class="demo__card__choice m--reject"></div>
+                    <div class="demo__card__choice m--like"></div>
+                    <div class="demo__card__drag"></div>
+                </div>
+                <div class="demo__card">
+                    <div class="demo__card__top cyan">
+                        <div class="demo__card__img"></div>
+                        <p class="demo__card__name">Hungry cat 4</p>
+                    </div>
+                    <div class="demo__card__btm">
+                        <p class="demo__card__we">四步相恋</p>
+                    </div>
+                    <div class="demo__card__choice m--reject"></div>
+                    <div class="demo__card__choice m--like"></div>
+                    <div class="demo__card__drag"></div>
+                </div>
+                <div class="demo__card">
+                    <div class="demo__card__top indigo">
+                        <div class="demo__card__img"></div>
+                        <p class="demo__card__name">Hungry cat 3</p>
+                    </div>
+                    <div class="demo__card__btm">
+                        <p class="demo__card__we">三步相惜</p>
+                    </div>
+                    <div class="demo__card__choice m--reject"></div>
+                    <div class="demo__card__choice m--like"></div>
+                    <div class="demo__card__drag"></div>
+                </div>
+                <div class="demo__card">
+                    <div class="demo__card__top blue">
+                        <div class="demo__card__img"></div>
+                        <p class="demo__card__name">Hungry cat 2</p>
+                    </div>
+                    <div class="demo__card__btm">
+                        <p class="demo__card__we">二步相知</p>
+                    </div>
+                    <div class="demo__card__choice m--reject"></div>
+                    <div class="demo__card__choice m--like"></div>
+                    <div class="demo__card__drag"></div>
+                </div>
+                <div class="demo__card">
+                    <div class="demo__card__top purple">
+                        <div class="demo__card__img"></div>
+                        <p class="demo__card__name">Hungry cat 1</p>
+                    </div>
+                    <div class="demo__card__btm">
+                        <p class="demo__card__we">一步相识</p>
+                    </div>
+                    <div class="demo__card__choice m--reject"></div>
+                    <div class="demo__card__choice m--like"></div>
+                    <div class="demo__card__drag"></div>
+                </div>
+            </div>
+            <p class="demo__tip">Swipe left or right</p>
+        </div>
+    </div>
+</body>
+
+<script src='js/jquery-2.1.1.min.js'></script>
+<script>
+    $(document).ready(function() {
+
+        var animating = false;
+        var cardsCounter = 0;
+        var numOfCards = 10;
+        var decisionVal = 80;
+        var pullDeltaX = 0;
+        var deg = 0;
+        var $card, $cardReject, $cardLike;
+
+        function pullChange() {
+            animating = true;
+            deg = pullDeltaX / 10;
+            $card.css("transform", "translateX(" + pullDeltaX + "px) rotate(" + deg + "deg)");
+
+            var opacity = pullDeltaX / 100;
+            var rejectOpacity = (opacity >= 0) ? 0 : Math.abs(opacity);
+            var likeOpacity = (opacity <= 0) ? 0 : opacity;
+            $cardReject.css("opacity", rejectOpacity);
+            $cardLike.css("opacity", likeOpacity);
+        };
+
+        function release() {
+
+            if (pullDeltaX >= decisionVal) {
+                $card.addClass("to-right");
+            } else if (pullDeltaX <= -decisionVal) {
+                $card.addClass("to-left");
+            }
+
+            if (Math.abs(pullDeltaX) >= decisionVal) {
+                $card.addClass("inactive");
+
+                setTimeout(function() {
+                    $card.addClass("below").removeClass("inactive to-left to-right");
+                    cardsCounter++;
+                    if (cardsCounter === numOfCards) {
+                        cardsCounter = 0;
+                        $(".demo__card").removeClass("below");
+                    }
+                }, 300);
+            }
+
+            if (Math.abs(pullDeltaX) < decisionVal) {
+                $card.addClass("reset");
+            }
+
+            setTimeout(function() {
+                $card.attr("style", "").removeClass("reset")
+                    .find(".demo__card__choice").attr("style", "");
+
+                pullDeltaX = 0;
+                animating = false;
+            }, 300);
+        };
+
+        $(document).on("mousedown touchstart", ".demo__card:not(.inactive)", function(e) {
+            if (animating) return;
+
+            $card = $(this);
+            $cardReject = $(".demo__card__choice.m--reject", $card);
+            $cardLike = $(".demo__card__choice.m--like", $card);
+            var startX = e.pageX || e.originalEvent.touches[0].pageX;
+
+            $(document).on("mousemove touchmove", function(e) {
+                var x = e.pageX || e.originalEvent.touches[0].pageX;
+                pullDeltaX = (x - startX);
+                if (!pullDeltaX) return;
+                pullChange();
+            });
+
+            $(document).on("mouseup touchend", function() {
+                $(document).off("mousemove touchmove mouseup touchend");
+                if (!pullDeltaX) return; // prevents from rapid click events
+                release();
+            });
+        });
+
+    });
+</script>
+
+</html>

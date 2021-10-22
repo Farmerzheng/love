@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    
+    html {
+        overflow: hidden;
+    }
+    
+    html {
+        -webkit-animation: html 4s ease infinite;
+        animation: html 4s ease infinite;
+    }
+    
+    .heart {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        background: #eb3f84;
+        margin: 200px auto;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        -webkit-animation: heart 4s ease infinite;
+        animation: heart 4s ease infinite;
+    }
+    
+    .heart:before,
+    .heart:after {
+        content: "";
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        background: #eb3f84;
+        border-radius: 200px;
+        -webkit-transition: 1s ease all;
+        transition: 1s ease all;
+    }
+    
+    .heart:before {
+        top: -100px;
+        left: 0;
+        -webkit-animation: left 4s ease infinite;
+        animation: left 4s ease infinite;
+    }
+    
+    .heart:after {
+        left: 100px;
+        top: 0;
+        -webkit-animation: right 4s ease infinite;
+        animation: right 4s ease infinite;
+    }
+    
+    @-webkit-keyframes heart {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            border-radius: 200px;
+            background: #fff;
+        }
+        30% {
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            border-radius: 10px;
+        }
+        50% {
+            background: #eb3f84;
+        }
+        70% {
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            border-radius: 10px;
+        }
+        100% {
+            -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+            border-radius: 200px;
+            background: #fff;
+        }
+    }
+    
+    @keyframes heart {
+        0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+            border-radius: 200px;
+            background: #fff;
+        }
+        30% {
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            border-radius: 10px;
+        }
+        50% {
+            background: #eb3f84;
+        }
+        70% {
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            border-radius: 10px;
+        }
+        100% {
+            -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+            border-radius: 200px;
+            background: #fff;
+        }
+    }
+    
+    @-webkit-keyframes left {
+        0% {
+            top: 0;
+            background: #fff;
+        }
+        30% {
+            top: -100px;
+        }
+        50% {
+            background: #eb3f84;
+        }
+        70% {
+            top: -100px;
+        }
+        100% {
+            top: 0;
+            background: #fff;
+        }
+    }
+    
+    @keyframes left {
+        0% {
+            top: 0;
+            background: #fff;
+        }
+        30% {
+            top: -100px;
+        }
+        50% {
+            background: #eb3f84;
+        }
+        70% {
+            top: -100px;
+        }
+        100% {
+            top: 0;
+            background: #fff;
+        }
+    }
+    
+    @-webkit-keyframes right {
+        0% {
+            left: 0;
+            background: #fff;
+        }
+        30% {
+            left: -100px;
+        }
+        50% {
+            background: #eb3f84;
+        }
+        70% {
+            left: -100px;
+        }
+        100% {
+            left: 0;
+            background: #fff;
+        }
+    }
+    
+    @keyframes right {
+        0% {
+            left: 0;
+            background: #fff;
+        }
+        30% {
+            left: -100px;
+        }
+        50% {
+            background: #eb3f84;
+        }
+        70% {
+            left: -100px;
+        }
+        100% {
+            left: 0;
+            background: #fff;
+        }
+    }
+    
+    @-webkit-keyframes html {
+        0% {
+            background: #eb3f84;
+        }
+        50% {
+            background: white;
+        }
+        100% {
+            background: #eb3f84;
+        }
+    }
+    
+    @keyframes html {
+        0% {
+            background: #eb3f84;
+        }
+        50% {
+            background: white;
+        }
+        100% {
+            background: #eb3f84;
+        }
+    }
+</style>
+
+<body>
+    <div class='heart'></div>
+</body>
+
+</html>

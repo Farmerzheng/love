@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: #86CFC4;
+    }
+    
+    #letter-wrapper {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        margin: 200px auto;
+    }
+    
+    #fountain-top {
+        position: absolute;
+        top: -110px;
+        left: -50px;
+    }
+    
+    #letter-top {
+        background-color: #EAE9EE;
+        content: " ";
+        width: 212px;
+        height: 212px;
+        top: -105px;
+        border-top-left-radius: 30px;
+        left: 45px;
+        transform: scale(1, 0.5) rotate(45deg);
+        position: absolute;
+    }
+    
+    #letter {
+        background-color: #DADEDF;
+        width: 300px;
+        height: 170px;
+    }
+    
+    #letter #smile {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: black;
+        width: 90px;
+        height: 50px;
+        border-radius: 50%;
+        border-bottom: 10px solid #7D7D7D;
+        text-align: center;
+    }
+    
+    #letter #smile:before,
+    #letter #smile:after {
+        content: "";
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        position: fixed;
+        border-bottom: 4px solid #7D7D7D;
+        top: 30%;
+    }
+    
+    #letter #smile:before {
+        left: 0;
+        transform: translate(-92%, 0) rotate(-61deg);
+    }
+    
+    #letter #smile:after {
+        right: 0;
+        transform: translate(93%, 0) rotate(57deg);
+    }
+    
+    #letter .eye {
+        width: 40px;
+        height: 20px;
+        border-top-left-radius: 110px;
+        border-top-right-radius: 110px;
+        border: 5px solid gray;
+        border-bottom: 0;
+        position: absolute;
+        top: 60px;
+    }
+    
+    #letter .eye:nth-child(1) {
+        transform: rotate(-5deg);
+        left: 40px;
+    }
+    
+    #letter .eye:nth-child(2) {
+        transform: rotate(5deg);
+        right: 40px;
+    }
+    
+    .heart {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        color: #F16A28;
+        font-size: 50px;
+        margin: 30px auto;
+        font-size: 180px;
+        position: absolute;
+        visibility: hidden;
+    }
+</style>
+
+<body>
+
+    <div id="letter-wrapper">
+        <div id="letter-top"></div>
+        <div id="fountain-top"></div>
+        <div id="letter">
+            <div class="eye"></div>
+            <div class="eye"></div>
+            <div id="smile"></div>
+        </div>
+    </div>
+
+    <script src='js/jquery.min.js'></script>
+    <script src='js/TweenMax.min.js'></script>
+    <script src='js/Physics2DPlugin.min.js'></script>
+</body>
+<script>
+    var density = 20,
+        speed = 1,
+        winHeight = $('window').height(),
+        start = {
+            yMin: winHeight + 50,
+            yMax: winHeight + 50,
+            xMin: 100,
+            xMax: 200,
+            scaleMin: 0.1,
+            scaleMax: 0.25,
+            opacityMin: 0.2,
+            opacityMax: 0.4
+        },
+        mid = {
+            yMin: winHeight * 0.3,
+            yMax: winHeight * 0.5,
+            xMin: 75,
+            xMax: 300,
+            scaleMin: 0.2,
+            scaleMax: 0.3,
+            opacityMin: 0.5,
+            opacityMax: 1
+        },
+        end = {
+            yMin: -180,
+            yMax: -180,
+            xMin: 20,
+            xMax: 600,
+            scaleMin: 0.1,
+            scaleMax: 1,
+            opacityMin: 0.2,
+            opacityMax: 0.7
+        },
+        colors = ["#F16A28", "#E50000", "#FF4C4C"];
+
+    function range(map, prop) {
+        var min = map[prop + "Min"],
+            max = map[prop + "Max"];
+        return min + (max - min) * Math.random();
+    }
+
+    function spawn(particle) {
+        var wholeDuration = (10 / speed) * (0.7 + Math.random() * 0.4),
+            delay = wholeDuration * Math.random(),
+            partialDuration = (wholeDuration + 1) * (0.3 + Math.random() * 0.4);
+
+        //set the starting values
+        TweenLite.set(particle, {
+            y: range(start, "y"),
+            x: range(start, "x"),
+            scale: range(start, "scale"),
+            opacity: range(start, "opacity"),
+            visibility: "hidden",
+            color: colors[Math.floor(Math.random() * colors.length)]
+        });
+
+        //the y tween should be continuous and smooth the whole duration
+        TweenLite.to(particle, wholeDuration, {
+            delay: delay,
+            y: range(end, "y"),
+            ease: Linear.easeNone
+        });
+
+        //now tween the x independently so that it looks more randomized (rather than linking it with scale/opacity changes too)
+        TweenLite.to(particle, partialDuration, {
+            delay: delay,
+            x: range(mid, "x"),
+            ease: Power1.easeOut
+        });
+        TweenLite.to(particle, wholeDuration - partialDuration, {
+            delay: partialDuration + delay,
+            x: range(end, "x"),
+            ease: Power1.easeIn
+        });
+
+        //now create some random scale and opacity changes
+        partialDuration = wholeDuration * (0.5 + Math.random() * 0.3);
+        TweenLite.to(particle, partialDuration, {
+            delay: delay,
+            scale: range(mid, "scale"),
+            autoAlpha: range(mid, "opacity"),
+            ease: Linear.easeNone
+        });
+        TweenLite.to(particle, wholeDuration - partialDuration, {
+            delay: partialDuration + delay,
+            scale: range(end, "scale"),
+            autoAlpha: range(end, "opacity"),
+            ease: Linear.easeNone,
+            onComplete: spawn,
+            onCompleteParams: [particle]
+        });
+    }
+
+    $(window).ready(function() {
+        var body = $("#fountain-top"),
+            i, particle;
+        for (i = 0; i < density; i++) {
+            spawn($("<div />", {
+                id: "heart" + i
+            }).addClass("heart").html('❤').appendTo(body));
+        }
+    });
+</script>
+
+</html>

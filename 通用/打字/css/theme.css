@@ -1,0 +1,52 @@
+.div_pure_words {
+    /*文字部分的最外层，用于定位*/
+    position: fixed;
+    top: 30px;
+    left: 0px;
+    display: none;
+}
+
+.div_pure_words_bg {
+    /*背景设置在这里*/
+    background-repeat: repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    width: 500px;
+    min-height: 500px;
+}
+
+.div_pure_words_height {
+    visibility: hidden;
+    padding: 30px;
+    text-align: justify;
+    /*为了使文字两端对齐 */
+    white-space: pre-wrap;
+    /*保留换行效果*/
+    font-size: 1.1em;
+    font-family: "Microsoft YaHei", "Arial";
+    color: white;
+}
+
+.div_pw_typed {
+    position: absolute;
+    left: 0;
+    right: 0;
+    /*4个方向定位使div充满整个画画*/
+    top: 0;
+    bottom: 0;
+    /*4个方向定位使div充满整个画画*/
+    width: 400px;
+    /*半透明效果*/
+    padding: 30px;
+    text-align: justify;
+    /*为了使文字两端对齐 */
+}
+
+#span_pw_typed {
+    width: 100%;
+    /*为了使文字两端对齐 */
+    white-space: pre-wrap;
+    /*保留换行效果*/
+    font-size: 1.1em;
+    font-family: "Microsoft YaHei", "Arial";
+}

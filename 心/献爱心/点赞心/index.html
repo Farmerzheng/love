@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Poiret+One);
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            text-align: center;
+            font-family: 'Poiret One', cursive;
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, .9);
+            background: #02344b;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-image: -webkit-linear-gradient(left bottom, #02344b, #0d0c0c);
+            background-image: linear-gradient(to right top, #02344b, #0d0c0c);
+            background-image: -moz-linear-gradient(to right top, #02344b, #0d0c0c);
+        }
+        
+        canvas {
+            margin-top: -4em;
+            width: 320px;
+            height: 480px;
+        }
+        
+        p {
+            width: 100%;
+            text-align: center;
+            margin-top: -3em;
+        }
+        
+        span {
+            color: #e00606;
+            font-weight: bold;
+        }
+        
+        h1 {
+            margin-top: 1.5em;
+            text-align: center;
+            font-family: microsoft yahei;
+        }
+        
+        button {
+            position: relative;
+            letter-spacing: 4px;
+            box-shadow: 2px 2px 2px 2px rgba(13, 12, 12, .2);
+            border: 1px solid rgba(255, 255, 255, .5);
+            background: transparent;
+            color: #fff;
+            padding: 1em;
+            width: 8em;
+            text-align: center;
+        }
+        
+        button:hover {
+            background: rgba(255, 255, 255, .8);
+            color: #02344b;
+            font-weight: bold;
+            -webkit-transition: 0.6s ease-in-out;
+            transition: 0.6s ease-in-out;
+        }
+    </style>
+</body>
+<h1>请点击爱心图标</h1>
+<canvas id="canv"></canvas>
+<script>
+    window.onload = function() {
+        heart_it();
+    }
+    var c;
+    var $;
+    var w;
+    var h;
+    var luv = null;
+    var x = 0;
+    var y = 0;
+    var v = 0;
+    var t = -1;
+    var x_ = -1;
+    var y_ = -1;
+
+    var flag = false;
+    var cnt = 0;
+    var cnt2 = 0;
+
+    var _x = new Array();
+    var _y = new Array();
+    var spX = new Array();
+    var spY = new Array();
+    var s = new Array();
+    var t1 = 1;
+    var star = new Image();
+    star.src = "stars1.png";
+
+    for (i = 0; i < 200; i++) {
+        _x[i] = 300;
+        _y[i] = 445;
+        spX[i] = (Math.random() * 16) - 8;
+        spY[i] = (Math.random() * 16) - 8;
+        s[i] = Math.random() * (70 - 10) + 15;
+    }
+
+    function heart_it() {
+        c = document.getElementById('canv');
+        w = c.width = 640;
+        h = c.height = 960;
+        $ = c.getContext('2d');
+        x_ = c.offsetLeft;
+        y_ = c.offsetTop;
+        x = 160;
+        y = 232;
+
+        c.addEventListener("mousedown", msdn, false);
+        c.addEventListener("touchstart", msdn, false);
+        c.addEventListener("mouseup", msup, false);
+        c.addEventListener("touchend", msup, false);
+
+        fav();
+    }
+
+    function fav() {
+        draw();
+        window.requestAnimationFrame(fav, 60);
+    }
+
+    function draw() {
+        x += v;
+        $.clearRect(0, 0, 640, 960);
+        $.textAlign = "center";
+        $.textBaseline = "middle";
+
+        if (cnt == 0) {
+            $.font = "100px Poiret One";
+            $.fillStyle = "hsla(255,255%,255%,1)";
+            $.fillText("❤", 320, 465);
+
+        } else if (cnt == 1) {
+            $.font = "150px Poiret One";
+            $.fillStyle = "hsla(0, 95%, 45%, 1)";
+            $.fillText("❤", 320, 465);
+
+        } else if (cnt == 2) {
+
+            for (i = 0; i < 200; i++) {
+
+                _x[i] = _x[i] - spX[i];
+                _y[i] = _y[i] - spY[i];
+
+                if (t1 > (Math.random() * 17)) {
+                    _y[i] = -1000
+                }
+
+                $.drawImage(star, _x[i], _y[i], s[i], s[i]);
+
+            }
+
+            t1 = t1 + 0.03;
+
+            $.font = "100px Poiret One";
+            $.fillStyle = "hsla(0, 95%, 45%, 1)";
+            $.fillText("❤", 320, 465);
+
+        } else {
+            $.font = "120px Poiret One";
+            $.fillStyle = "hsla(0, 95%, 45%, 1)";
+            $.fillText("❤", 320, 465);
+        }
+
+    }
+
+    function msdn(e) {
+        var currX = e.clientX - x_;
+        var currY = e.clientY - y_;
+
+        var x1 = x - currX;
+        var y1 = y - currY;
+        var r = Math.sqrt(x1 * x1 + y1 * y1);
+
+        if (r < 60) {
+            cnt = cnt + 1;
+            flag = true;
+        }
+    }
+
+    function msup(e) {
+        if (flag) {
+            cnt = cnt + 1;
+        }
+    }
+
+    document.ontouchmove = function(e) {
+        e.preventDefault();
+    }
+</script>
+
+</html>

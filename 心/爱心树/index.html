@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    canvas {
+        position: absolute;
+    }
+</style>
+
+<body>
+    <canvas class="center" id="c"></canvas>
+</body>
+<script>
+    var canvas = document.getElementById('c');
+    var W = canvas.width = window.innerWidth;
+    var H = canvas.height = window.innerHeight;
+    var context = canvas.getContext('2d');
+    context.globalCompositeOperation = "xor";
+
+    var heart = new Image();
+    heart.src = "img/Heart-icon.png";
+    heart.onload = function() {
+        update();
+    };
+
+    var tree = new Image();
+    tree.src = "img/TreeBranches.png";
+    tree.onload = function() {
+
+    };
+
+    var leaves = [];
+    var maxParticleSize = 100;
+    var mousePos = {
+        x: 0,
+        y: 0
+    };
+
+    function leaf() {
+        this.x = randomInt(W / 2 - 170, W / 2 + 160);
+        this.y = randomInt(H - 170, H - 400);
+        this.angle = toRadians(randomInt(0, 360));
+        this.size = 0;
+        this.lifetime = 100;
+
+        if (Math.random() < 0.1) {
+            this.vx = mousePos.x * 0.005;
+            this.vy = -mousePos.y * 0.01;
+        } else {
+            this.vx = 0;
+            this.vy = 0;
+        }
+    }
+
+    leaf.prototype.draw = function() {
+        context.save();
+        context.translate(this.x + 15, this.y + 15);
+        context.rotate(this.angle);
+        context.translate(-15, -15);
+        context.drawImage(heart, 0, 0, this.size, this.size);
+        context.restore();
+
+        this.x += this.vx;
+        this.y -= this.vy;
+        this.angle += 0.02;
+        this.lifetime -= 1;
+
+        if (this.lifetime > randomInt(85, 95)) {
+            this.size += 3;
+        } else if (this.lifetime < 10) {
+            this.size -= 3;
+        }
+    }
+
+    function update() {
+        context.clearRect(0, 0, W, H);
+        context.drawImage(tree, W / 2 - 200, H - 400, 400, 400);
+
+        if (leaves.length < maxParticleSize) {
+            var newLeaf = new leaf();
+            leaves.push(newLeaf);
+        }
+
+        for (var i = 0; i < leaves.length; i++) {
+            leaves[i].draw();
+            if (leaves[i].lifetime == 0) {
+                leaves[i] = new leaf()
+            }
+        }
+
+        window.requestAnimationFrame(update);
+    }
+
+    function randomInt(min, max) {
+        return Math.floor(min + Math.random() * (max - min + 1));
+    }
+
+    function toRadians(angle) {
+        return angle * (Math.PI / 180);
+    }
+
+    function getRelativeMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+            x: evt.clientX - W / 2,
+            y: evt.clientY - H / 2
+        };
+    }
+
+    canvas.addEventListener('mousemove', function(evt) {
+        mousePos = getRelativeMousePos(canvas, evt);
+    }, false);
+
+    window.addEventListener('resize', function(e) {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+        context.globalCompositeOperation = "xor";
+    }, false);
+</script>
+
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+    
+    body {
+        background: radial-gradient(#fcd, #dab);
+        margin: auto;
+    }
+    
+    #content {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: blue;
+    }
+    
+    #kirby {
+        display: inline-block;
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        left: 50%;
+        top: 50%;
+        border: black 5px solid;
+        border-radius: 50%;
+        background: #fac;
+        transition: all 0.2s;
+        transform: translate(-50%, -50%);
+    }
+    
+    #kirby .eyes {
+        position: absolute;
+        width: 18px;
+        height: 50px;
+        background: #038;
+        border-radius: 50%;
+        border: black 5px solid;
+        top: 35%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+    }
+    
+    #kirby .eyes.left {
+        left: 38%;
+    }
+    
+    #kirby .eyes.right {
+        left: 62%;
+    }
+    
+    #kirby .eyes:before {
+        content: "";
+        position: absolute;
+        display: inline-block;
+        width: 200%;
+        height: 100%;
+        border-radius: 50%;
+        top: 25%;
+        left: 50%;
+        background: black;
+        transform: translate(-50%, -50%);
+    }
+    
+    #kirby .eyes:after {
+        content: "";
+        position: absolute;
+        display: inline-block;
+        width: 75%;
+        height: 50%;
+        border-radius: 50%;
+        top: 25%;
+        left: 50%;
+        background: white;
+        transform: translate(-50%, -50%);
+    }
+    
+    #kirby .cheeks {
+        position: absolute;
+        width: 0px;
+        height: 0px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: blue;
+    }
+    
+    #kirby .cheeks:before {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 15px;
+        left: -50px;
+        background: #f8a;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    #kirby .cheeks:after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 15px;
+        left: 50px;
+        background: #f8a;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    #kirby .mouth {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 68%;
+        left: 50%;
+        border-radius: 10px;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+    }
+    
+    #kirby .mouth:before {
+        content: "";
+        position: absolute;
+        background: #611;
+        width: 100%;
+        height: 150%;
+        left: 50%;
+        top: 0;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    #kirby .mouth:after {
+        content: "";
+        position: absolute;
+        background: #d43;
+        width: 60%;
+        height: 40%;
+        left: 50%;
+        top: 45%;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    #kirby:active {
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    
+    #click {
+        position: absolute;
+        top: 400%;
+        left: 50%;
+        width: 500px;
+        text-align: center;
+        transform: translate(-50%, -50%) scale(0);
+        font: 32px Impact, serif;
+        animation: anim2 1s infinite alternate;
+    }
+    
+    @keyframes anim2 {
+        from {
+            transform: translate(-50%, -50%) scale(0.9);
+        }
+        to {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+    }
+    
+    #text {
+        position: absolute;
+        top: 400%;
+        left: 50%;
+        width: 500px;
+        text-align: center;
+        transform: translate(-50%, -50%) scale(1);
+        font: 48px Impact, serif;
+        animation: apparition 1s, anim2 1s 1s infinite alternate;
+    }
+    
+    @keyframes apparition {
+        from {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+        }
+        to {
+            transform: translate(-50%, -50%) scale(0.9);
+            opacity: 1;
+        }
+    }
+    
+    .heart {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        z-index: 500;
+        animation: heartmove 2s forwards;
+    }
+    
+    .heart .top:before {
+        position: absolute;
+        content: "";
+        background: red;
+        width: 50%;
+        height: 50%;
+        border-radius: 50%;
+    }
+    
+    .heart .top:after {
+        position: absolute;
+        right: 0;
+        content: "";
+        background: red;
+        width: 50%;
+        height: 50%;
+        border-radius: 50%;
+    }
+    
+    .heart .bottom {
+        position: absolute;
+        top: 25%;
+        width: 100%;
+        height: 75%;
+    }
+    
+    .heart .bottom .left {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+    }
+    
+    .heart .bottom .left:before {
+        position: absolute;
+        content: "";
+        background: red;
+        width: 400%;
+        height: 200%;
+        border-radius: 50%;
+        top: -100%;
+    }
+    
+    .heart .bottom .right {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        right: 0;
+        overflow: hidden;
+    }
+    
+    .heart .bottom .right:before {
+        position: absolute;
+        content: "";
+        background: red;
+        width: 400%;
+        height: 200%;
+        border-radius: 50%;
+        top: -100%;
+        right: 0;
+    }
+    
+    @keyframes heartmove {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-100px);
+            opacity: 0;
+        }
+    }
+</style>
+
+<body>
+    <div id='content'>
+        <div id='click'>Click me ：）</div>
+        <a id='kirby'>
+            <div class='eyes left'></div>
+            <div class='eyes right'></div>
+            <div class='mouth'></div>
+            <div class='cheeks'></div>
+        </a>
+    </div>
+</body>
+<script src="js/jquery-2.1.1.min.js"></script>
+<script>
+    var booleen = 1;
+
+    $('#kirby').click(function() {
+
+        if (booleen) {
+            $("#click").remove();
+            $("<div id='text'>I love u, man  !</div>").insertAfter("#kirby");
+            booleen = 0;
+        }
+
+        for (var i = 0; i < 5; i++) {
+            var x = (Math.random() * 400 - 200) + "px"
+            var y = (Math.random() * 200 - 200) + "px"
+            $("<div class='heart'><div class='top'></div><div class='bottom'><div class='left'></div><div class='right'></div></div></div>").insertAfter("#kirby").css({
+                'left': x,
+                'top': y
+            }).one("animationend", function(event) {
+                $(this).remove();
+            });
+        }
+    });
+</script>
+
+</html>
