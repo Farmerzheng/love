@@ -8,7 +8,7 @@
     ></span>
     <audio
       id="audio"
-      src="../assets/media/群星-恨爱交加.mp3"
+      src="../assets/media/Way Back Home.mp3"
       autoplay="autoplay"
       loop="loop"
     ></audio>
@@ -35,6 +35,10 @@ export default {
         this.playFlag = !this.playFlag
       }
     }
+  },
+  mounted () {
+    var audio = document.querySelector('#audio')
+    audio.play()
   }
 }
 </script>

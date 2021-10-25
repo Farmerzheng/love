@@ -6,6 +6,11 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/',
+      name: 'home',
+      redirect: '/first'
+    },
+    {
       path: '/first',
       name: 'first',
       component: () => import(/* webpackChunkName: "about" */ './views/PageOne')

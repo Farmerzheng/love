@@ -2,20 +2,20 @@
   <div class="page-one">
     <bg></bg>
     <banner></banner>
-    <cont></cont>
+    <cont-popup></cont-popup>
   </div>
 </template>
 
 <script>
 import Bg from '../components/Bg'
 import Banner from '../components/Banner'
-import Cont from '../components/Cont'
+import ContPopup from '../components/ContPopup'
 export default {
   name: '',
   components: {
     Bg,
     Banner,
-    Cont
+    ContPopup
   }
 }
 </script>

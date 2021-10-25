@@ -1,7 +1,6 @@
 <template>
   <div class="banner-wrap">
-    <h3>或许，时光倒流，我也可以</h3>
-    <h3>慢慢长成，自己想要的模样</h3>
+    <h3>你猜、你猜、你猜猜猜</h3>
     <div class="banner"></div>
   </div>
 </template>
@@ -32,7 +31,7 @@ export default {
     width: 100%;
     background-color: red;
     border-radius: 10px;
-    background-image: url(../assets/img/banner/9.gif);
+    background-image: url(../assets/img/banner/1g.gif);
     background-size: contain;
   }
 }

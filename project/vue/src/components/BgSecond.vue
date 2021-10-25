@@ -31,7 +31,7 @@ export default {
   margin: 0;
   padding: 0;
   background-color: #333;
-  background-image: url(../assets/img/bg/3.gif);
+  background-image: url(../assets/img/bg/5.gif);
   background-size: cover;
 }
 </style>
