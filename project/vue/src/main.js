@@ -4,8 +4,7 @@ import {
   Button,
   Col,
   Input,
-  MessageBox,
-  Alert
+  MessageBox
 } from 'element-ui'
 import App from './App'
 import router from './router'

@@ -1,18 +1,17 @@
 <template>
   <div class="page-two">
     <bg-second></bg-second>
-    <text-float></text-float>
-    <!--  <cont></cont> -->
+    <text-scroll-up></text-scroll-up>
   </div>
 </template>
 
 <script>
 import BgSecond from '../components/BgSecond'
-import TextFloat from '../components/TextFloat'
+import TextScrollUp from '../components/TextScrollUp'
 export default {
   name: '',
   components: {
-    TextFloat,
+    TextScrollUp,
     BgSecond
   }
 }

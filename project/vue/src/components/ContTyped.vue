@@ -1,10 +1,6 @@
 <template>
   <div class="content">
-    <vue-typed-js
-      :strings="userInput"
-      :typeSpeed="100"
-      :showCursor="false"
-    >
+    <vue-typed-js :strings="userInput" :typeSpeed="100" :showCursor="false">
       <p class="typing"></p>
     </vue-typed-js>
   </div>
@@ -16,9 +12,7 @@ export default {
   name: '',
   data () {
     return {
-      userInput: [
-        '<p>💕️ 我们很好</p><p>💕️ 只是时间不凑巧</p>'
-      ]
+      userInput: ['<p>💕️ 我们很好</p><p>💕️ 只是时间不凑巧</p>']
     }
   },
   methods: {},
@@ -31,11 +25,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='less'>
 .content {
-    position: relative;
-    font-size: .8rem;
-    line-height: 1.5rem;
-    padding: .2rem 1rem;
-    letter-spacing: 2px;
+  position: relative;
+  font-size: 0.8rem;
+  line-height: 1.5rem;
+  padding: 0.2rem 1rem;
+  letter-spacing: 2px;
   .tip {
     width: 70vw;
     margin: 15px auto;

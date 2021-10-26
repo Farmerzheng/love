@@ -1,21 +1,24 @@
 <template>
   <div class="page-one">
-    <bg></bg>
+    <!-- <bg></bg>
     <banner></banner>
-    <cont-popup></cont-popup>
+    <cont-popup></cont-popup> -->
+    <img-scale></img-scale>
   </div>
 </template>
 
 <script>
-import Bg from '../components/Bg'
-import Banner from '../components/Banner'
-import ContPopup from '../components/ContPopup'
+// import Bg from '../components/Bg'
+// import Banner from '../components/Banner'
+// import ContPopup from '../components/ContPopup'
+import ImgScale from '../components/ImgScale.vue'
 export default {
   name: '',
   components: {
-    Bg,
-    Banner,
-    ContPopup
+    // Bg,
+    // Banner,
+    // ContPopup,
+    ImgScale
   }
 }
 </script>

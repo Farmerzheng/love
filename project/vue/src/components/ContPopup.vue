@@ -34,25 +34,28 @@ export default {
   },
   methods: {
     next () {
-    //   console.log(this.popIndex, this.popArr.length - 1)
+      //   console.log(this.popIndex, this.popArr.length - 1)
       //   if (this.popIndex === this.popArr.length) {
       //     this.$router.push('/second')
       //   } else {
       var that = this
       function pop () {
-        that.$alert(that.popArr[that.popIndex], '温馨提示', {
-          confirmButtonText: '确定'
-        }).then(() => {
-          that.popIndex++
+        that
+          .$alert(that.popArr[that.popIndex], '温馨提示', {
+            confirmButtonText: '确定'
+          })
+          .then(() => {
+            that.popIndex++
 
-          if (that.popIndex === that.popArr.length) {
-            that.$router.push('/second')
-          } else {
-            pop()
-          }
-        }).catch(() => {
-          console.log(2)
-        })
+            if (that.popIndex === that.popArr.length) {
+              that.$router.push('/second')
+            } else {
+              pop()
+            }
+          })
+          .catch(() => {
+            console.log(2)
+          })
       }
 
       pop()
