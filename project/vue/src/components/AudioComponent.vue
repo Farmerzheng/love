@@ -8,7 +8,7 @@
     ></span>
     <audio
       id="audio"
-      src="../assets/media/盗将行.mp3"
+      src="../assets/media/小鸡进行曲.mp3"
       autoplay="autoplay"
       loop="loop"
     ></audio>
