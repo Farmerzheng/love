@@ -14,6 +14,10 @@ import cssToRem from './util/rem'
 import {
   VueTypedJs
 } from 'vue-typed-js'
+import Video from 'video.js'
+import 'video.js/dist/video-js.css'
+
+Vue.prototype.$video = Video
 
 cssToRem()
 

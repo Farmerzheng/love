@@ -1,24 +1,16 @@
 <template>
   <div class="page-one">
-    <!-- <bg></bg>
-    <banner></banner>
-    <cont-popup></cont-popup> -->
-    <img-scale></img-scale>
+      <bg-video></bg-video>
   </div>
 </template>
 
 <script>
-// import Bg from '../components/Bg'
-// import Banner from '../components/Banner'
-// import ContPopup from '../components/ContPopup'
-import ImgScale from '../components/ImgScale.vue'
+
+import BgVideo from '../components/BgVideo'
 export default {
   name: '',
   components: {
-    // Bg,
-    // Banner,
-    // ContPopup,
-    ImgScale
+    BgVideo
   }
 }
 </script>
