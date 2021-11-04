@@ -14,7 +14,7 @@ var linesRy = []; //
 var requestId = null;
 
 for (var i = 0; i < linesNum; i++) {
-    var flag = i % 2 == 0 ? "h" : "v";
+    var flag = i % 2 === 0 ? "h" : "v";
     var l = new Line_is(flag);
     linesRy.push(l);
 }
@@ -30,12 +30,12 @@ function Line_is(flag) {
     this.a = {};
     this.b = {};
 
-    if (flag == "v") {
+    if (flag === "v") {
         this.a.y = 0;
         this.b.y = ch_is;
         this.a.x = randomIntFromInterval(0, ch_is);
         this.b.x = randomIntFromInterval(0, ch_is);
-    } else if (flag == "h") {
+    } else if (flag === "h") {
         this.a.x = 0;
         this.b.x = cw_is;
         this.a.y = randomIntFromInterval(0, cw_is);
@@ -54,10 +54,10 @@ function Line_is(flag) {
     };
 
     this.update = function() {
-        if (this.flag == "v") {
+        if (this.flag === "v") {
             this.a.x += this.va;
             this.b.x += this.vb;
-        } else if (flag == "h") {
+        } else if (flag === "h") {
             this.a.y += this.va;
             this.b.y += this.vb;
         }
@@ -65,14 +65,14 @@ function Line_is(flag) {
     };
 
     this.edges = function() {
-        if (this.flag == "v") {
+        if (this.flag === "v") {
             if (this.a.x < 0 || this.a.x > cw_is) {
                 this.va *= -1;
             }
             if (this.b.x < 0 || this.b.x > cw_is) {
                 this.vb *= -1;
             }
-        } else if (flag == "h") {
+        } else if (flag === "h") {
             if (this.a.y < 0 || this.a.y > ch_is) {
                 this.va *= -1;
             }
@@ -104,7 +104,7 @@ function Draw_is() {
 function Init_is() {
     linesRy.length = 0;
     for (var i = 0; i < linesNum; i++) {
-        var flag = i % 2 == 0 ? "h" : "v";
+        var flag = i % 2 === 0 ? "h" : "v";
         var l = new Line_is(flag);
         linesRy.push(l);
     }

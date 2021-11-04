@@ -1,16 +1,19 @@
 <template>
   <div class="page-one">
-      <bg-video></bg-video>
+    <text-scroll-up></text-scroll-up>
+    <cover-msg-btn></cover-msg-btn>
+
   </div>
 </template>
 
 <script>
-
-import BgVideo from '../components/BgVideo'
+import CoverMsgBtn from '../components/CoverMsgBtn'
+import TextScrollUp from '../components/TextScrollUp'
 export default {
   name: '',
   components: {
-    BgVideo
+    TextScrollUp,
+    CoverMsgBtn
   }
 }
 </script>

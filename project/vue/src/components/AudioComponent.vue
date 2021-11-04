@@ -8,10 +8,11 @@
     ></span>
     <audio
       id="audio"
-      src="../assets/media/小鸡进行曲.mp3"
-      autoplay="autoplay"
+      src=""
+
       loop="loop"
     ></audio>
+     <!-- autoplay="autoplay" -->
   </div>
 </template>
 

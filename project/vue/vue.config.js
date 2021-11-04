@@ -116,7 +116,8 @@ module.exports = {
         path.resolve(__dirname, './src/assets/styles/reset.less')
       ]
     }
-  }
+  },
+  lintOnSave: true
   // 配置rem 插件
   // css: {
   //   loaderOptions: {
