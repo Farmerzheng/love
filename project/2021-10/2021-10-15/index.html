@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕💕💕</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        background: #000;
+        overflow: hidden;
+    }
+    
+    .heart {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 200px;
+        height: 260px;
+        margin: auto;
+        transform-style: preserve-3d;
+        perspective: 800px;
+        animation: rot 15s linear infinite;
+    }
+    
+    @keyframes rot {
+        from {
+            transform: rotateY(0deg) rotateX(0deg)
+        }
+        to {
+            transform: rotateY(360deg) rotateX(360deg)
+        }
+    }
+    
+    .rib {
+        position: absolute;
+        width: 200px;
+        height: 260px;
+        border: solid red;
+        border-width: 1px 1px 0 0;
+        border-radius: 100% 100% 0/40% 100% 0;
+        transition: all 1s;
+    }
+    
+    .cube {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 100px;
+        height: 100px;
+        color: red;
+        transform-style: preserve-3d;
+        transform: translateZ(50px);
+    }
+    
+    .cube div {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+    }
+    
+    .cube div:nth-child(1) {
+        left: 0;
+        top: -100px;
+        transform-origin: bottom;
+        transform: rotateX(90deg);
+    }
+    
+    .cube div:nth-child(2) {
+        left: 0;
+        top: 100px;
+        transform-origin: top;
+        transform: rotateX(-90deg);
+    }
+    
+    .cube div:nth-child(3) {
+        left: -100px;
+        top: 0px;
+        transform-origin: right;
+        transform: rotateY(-90deg);
+    }
+    
+    .cube div:nth-child(4) {
+        left: 100px;
+        top: 0px;
+        transform-origin: left;
+        transform: rotateY(90deg);
+    }
+    
+    .cube div:nth-child(5) {
+        left: 0;
+        top: 0px;
+    }
+    
+    .cube div:nth-child(6) {
+        left: 0;
+        top: 0px;
+        transform: translateZ(-100px);
+    }
+    
+    .more {
+        position: fixed;
+        right: 3rem;
+        bottom: 5rem;
+        z-index: 10000;
+        text-decoration: none;
+        border-radius: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: inline-block;
+        background-color: rgba(255, 0, 0, .3);
+        color: #fff;
+        font-size: .6rem;
+        line-height: 1.5rem;
+        text-align: center;
+        border: 2px solid #fff;
+    }
+    
+    .media-wrap {
+        overflow: hidden;
+        position: fixed;
+        top: 1rem;
+        right: 0;
+        z-index: 10000;
+        width: 4rem;
+        height: 2rem;
+        font-size: 2rem;
+    }
+    
+    .media-wrap #musicBtnTxt {
+        float: right;
+        height: 3rem;
+        width: 2rem;
+        line-height: 3rem;
+        text-align: center;
+        color: #fff;
+        font-size: 2rem;
+    }
+    
+    .media-wrap .music-btn {
+        float: left;
+        width: 1.5rem;
+        height: 1.5rem;
+        background: url('img/music-icon.png');
+        background-size: cover;
+    }
+    
+    .musicOn {
+        -webkit-animation: reverseRotate 2.5s linear infinite;
+    }
+    /*旋转动画*/
+    
+    @-webkit-keyframes reverseRotate {
+        0% {
+            -webkit-transform: rotateZ(0deg);
+        }
+        100% {
+            -webkit-transform: rotateZ(-360deg);
+        }
+    }
+</style>
+
+<body>
+    <!-- 更多 -->
+    <a class="more" href="https://mp.weixin.qq.com/s/tCcKtcGztWX5g6Say-np2g">更多</a>
+    <!--音乐按钮-->
+    <aside class="media-wrap">
+        <!-- <span id="musicBtnTxt" style="display: none;">关闭</span> -->
+        <span id="musicBtn" class="music-btn"></span>
+    </aside>
+    <audio id="autoplay" src="media/2.mp3" autoplay="autoplay" loop="loop"></audio>
+    <div class="heart">
+
+        <div class="cube">
+
+            <div>
+                <img src="img/1.png" width="100" height="100" alt=""> </div>
+
+            <div>
+                <img src="img/2.png" width="100" height="100" alt=""> </div>
+
+            <div>
+                <img src="img/7.png" width="100" height="100" alt=""> </div>
+
+            <div>
+                <img src="img/8.png" width="100" height="100" alt=""> </div>
+
+            <div>
+                <img src="img/9.png" width="100" height="100" alt=""> </div>
+
+            <div>
+                <img src="img/10.png" width="100" height="100" alt=""> </div>
+        </div>
+    </div>
+</body>
+<script>
+    var heart = document.getElementsByClassName("heart")[0];
+    for (var i = 0; i < 36; i++) {
+        var oDiv = document.createElement("div");
+        oDiv.className = "rib";
+        // 画36条心形曲线
+        oDiv.style.transform = "rotateY(" + 10 * i + "deg) rotateZ(45deg) translateX(30px)";
+        var n = 0;
+        setInterval(function() {
+            if (n < 36) {
+                document.getElementsByClassName('rib')[n].style.borderColor = getRandomColor();
+                n = n + 1;
+            } else {
+                n = 0;
+            }
+        }, 1000)
+        console.log(n)
+        heart.appendChild(oDiv);
+    }
+
+    // 随机色
+    var getRandomColor = function() {
+        return '#' +
+            (function(color) {
+                return (color += '0123456789abcdef' [Math.floor(Math.random() * 16)]) &&
+                    (color.length == 6) ? color : arguments.callee(color);
+            })('');
+    }
+
+    // 点击声音按钮的效果
+    var oMusicBtn = document.getElementById('musicBtn');
+    var oMusic = document.getElementById('autoplay');
+    oMusic.play();
+    oMusicBtn.className = 'musicOn music-btn';
+    //         var oMusicText = document.getElementById('musicBtnTxt');
+
+    //点击播放按钮
+    oMusicBtn.onclick = function() {
+        console.log(oMusic.paused);
+        if (oMusic.paused) { //如果暂停，就播放
+            oMusic.play();
+            //                 oMusicText.innerHTML = '开始'; //更改文字提示的内容
+            oMusicBtn.className = 'musicOn music-btn'; //按钮旋转
+            //                 oMusicText.style.display = 'block';
+        } else { //如果播放，就暂停
+            oMusic.pause();
+            //                 oMusicText.innerHTML = '关闭'; //更改文字提示的内容
+            oMusicBtn.className = 'music-btn'; //停止旋转
+            //                 oMusicText.style.display = 'block';
+        }
+        //        1s后隐藏提示文字
+        setTimeout(function() {
+            oMusicText.style.display = 'none';
+        }, 1000)
+
+    }
+</script>
+
+</html>

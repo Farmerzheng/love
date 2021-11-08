@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕💕💕</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .main-content {
+        position: relative;
+        width: 500px;
+    }
+    
+    .main-info {
+        position: absolute;
+        width: 500px;
+    }
+    
+    .img-bg {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 500px;
+    }
+    
+    .response-img {
+        position: absolute;
+        left: 0px;
+        top: 230px;
+        width: 500px;
+    }
+    
+    .content {
+        position: absolute;
+        left: 30px;
+        top: 440px;
+        color: #fff;
+        font-size: .8rem;
+        line-height: 1.5rem;
+    }
+    
+    .content .tips {
+        display: none;
+    }
+    
+    .media-wrap {
+        overflow: hidden;
+        position: fixed;
+        top: 1rem;
+        right: .5rem;
+        z-index: 10000;
+        width: 4rem;
+        height: 3.5rem;
+        font-size: 1.6rem;
+    }
+    
+    .media-wrap #musicBtnTxt {
+        float: right;
+        height: 3rem;
+        width: 2rem;
+        line-height: 3rem;
+        text-align: center;
+        color: #fff;
+        font-size: 2rem;
+    }
+    
+    .media-wrap .music-btn {
+        float: left;
+        width: 1.5rem;
+        height: 1.5rem;
+        background: url('img/music-icon.png');
+        background-size: cover;
+    }
+    
+    .musicOn {
+        -webkit-animation: reverseRotate 2.5s linear infinite;
+    }
+    /*旋转动画*/
+    
+    @-webkit-keyframes reverseRotate {
+        0% {
+            -webkit-transform: rotateZ(0deg);
+        }
+        100% {
+            -webkit-transform: rotateZ(-360deg);
+        }
+    }
+    
+    .more {
+        position: fixed;
+        right: 3rem;
+        bottom: 5rem;
+        z-index: 10000;
+        text-decoration: none;
+        border-radius: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: inline-block;
+        background-color: rgba(255, 0, 0, .3);
+        color: #fff;
+        font-size: .6rem;
+        line-height: 1.5rem;
+        text-align: center;
+        border: 2px solid #fff;
+    }
+</style>
+
+<body>
+    <!-- 更多 -->
+    <a class="more" href="http://mp.weixin.qq.com/s?__biz=MzAxNDI3NTc0NA==&mid=2247483809&idx=1&sn=8553a154a713c9868c66604b4e18448d&chksm=9b94846eace30d789d3dea0f6ceefca3d71bde644eb1625ab605c05f174c18274ebf2784ab1d#rd">更多</a>
+    <!--音乐按钮-->
+    <aside class="media-wrap">
+        <!-- <span id="musicBtnTxt" style="display: none;">关闭</span> -->
+        <span id="musicBtn" class="music-btn"></span>
+    </aside>
+    <audio id="autoplay" src="media/1.mp3" autoplay="autoplay" loop="loop"></audio>
+    <div class="main-content">
+        <img src="img/blackboard.jpg" class="img-bg" alt="">
+        <img src="img/up_half.jpg" class="response-img" id="redux" />
+    </div>
+    <div class="content">
+        <div class="btn">点击查看提示</div>
+        <div class="tips">动动手指，抹掉公式的上半部分试试</div>
+    </div>
+</body>
+<script src='js/rem.js'></script>
+<script src='js/jquery-2.0.3.min.js'></script>
+<script src='js/jquery.eraser.js'></script>
+<script>
+    $(window).load(function() {
+        //     计算屏幕的宽度
+        var width = window.outerWidth;
+
+        console.log('屏幕宽度' + width);
+        //摆放 magin-content,使文本居中
+        if (width < 500) { //如果屏幕宽度小于500
+            $('.main-content').css({
+                left: (width - 500) / 2
+            })
+        }
+
+        //点击按钮添加事件
+        $('.btn').on('click', function() {
+            $('.tips').css({
+                display: 'block'
+            })
+        });
+        // 点击声音按钮的效果
+        var oMusicBtn = document.getElementById('musicBtn');
+        var oMusic = document.getElementById('autoplay');
+        oMusic.pause();
+        //         var oMusicText = document.getElementById('musicBtnTxt');
+
+        //点击播放按钮
+        oMusicBtn.onclick = function() {
+            console.log(oMusic.paused);
+            if (oMusic.paused) { //如果暂停，就播放
+                oMusic.play();
+                //                 oMusicText.innerHTML = '开始'; //更改文字提示的内容
+                oMusicBtn.className = 'musicOn music-btn'; //按钮旋转
+                //                 oMusicText.style.display = 'block';
+            } else { //如果播放，就暂停
+                oMusic.pause();
+                //                 oMusicText.innerHTML = '关闭'; //更改文字提示的内容
+                oMusicBtn.className = 'music-btn'; //停止旋转
+                //                 oMusicText.style.display = 'block';
+            }
+            //        1s后隐藏提示文字
+            setTimeout(function() {
+                oMusicText.style.display = 'none';
+            }, 1000)
+
+        }
+
+        //这个适用手机端，等图片加载完再显示，因为有可能会出现第一次加载图片没有加载完就不会出现canvas
+        $('#redux').eraser({
+            size: 40, //设置橡皮擦大小
+            completeRatio: .6, //设置擦除面积比例
+            completeFunction: showResetButton, //大于擦除面积比例触发函数           
+            progressFunction: function(p) { //擦除过程中触发函数
+                // $('#progress').html(Math.round(p*100) + '%');
+                console.log('the pic was erased ' + Math.round(p * 100) + '%');
+            }
+        });
+
+        function showResetButton() {
+            console.log('擦除完成');
+            // 播放音乐
+            oMusic.play();
+            oMusicBtn.className = 'musicOn music-btn'; //按钮旋转
+        }
+
+
+    })
+</script>
+
+</html>

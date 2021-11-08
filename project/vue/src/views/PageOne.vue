@@ -1,24 +1,20 @@
 <template>
   <div class="page-one">
-    <text-scroll-up></text-scroll-up>
     <cover-msg-btn></cover-msg-btn>
-
+    <text-float></text-float>
   </div>
 </template>
-
 <script>
 import CoverMsgBtn from '../components/CoverMsgBtn'
-import TextScrollUp from '../components/TextScrollUp'
+import TextFloat from '../components/TextFloat'
 export default {
   name: '',
   components: {
-    TextScrollUp,
-    CoverMsgBtn
+    CoverMsgBtn,
+    TextFloat
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .page-one {
   width: 100%;

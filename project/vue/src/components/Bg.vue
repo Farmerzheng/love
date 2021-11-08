@@ -10,7 +10,7 @@ export default {
   name: '',
   data () {
     return {
-      coverOpacity: 0.8
+      coverOpacity: 0.1
     }
   },
   components: {
@@ -31,7 +31,7 @@ export default {
   margin: 0;
   padding: 0;
   background-color: #333;
-  background-image: url(../assets/img/bg/4.gif);
+  background-image: url(../assets/img/bg/4.jpg);
   background-size: cover;
 }
 </style>

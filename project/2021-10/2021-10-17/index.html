@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 文字主体样式 -->
+    <link rel="stylesheet" href="css/theme.css">
+    <script src='js/rem.js'></script>
+    <title>️️💕️️爱你️️💕</title>
+</head>
+<style>
+    html,
+    body {
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #f8f8f8
+    }
+    
+    .message {
+        width: 40%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        box-shadow: 4px 4px 24px 0px #999;
+        animation-name: heartbeat;
+        animation-duration: 1000ms;
+        animation-timing-function: cubic-bezier(0, 0, 0, 1.74);
+        animation-delay: 500ms;
+        animation-iteration-count: infinite;
+        animation-play-state: running;
+        z-index: 100;
+    }
+    
+    @keyframes heartbeat {
+        0% {
+            transform: scale(0.95);
+        }
+        100% {
+            transform: scale(0.95);
+        }
+        50% {
+            transform: scale(1);
+        }
+    }
+    
+    .more {
+        position: fixed;
+        right: .3rem;
+        top: 5rem;
+        z-index: 10000;
+        text-decoration: none;
+        border-radius: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: inline-block;
+        background-color: rgba(0, 0, 0, .3);
+        color: #fff;
+        font-size: .6rem;
+        line-height: 1.5rem;
+        text-align: center;
+        border: 2px solid #fff;
+    }
+    /* 内容样式 */
+    
+    .content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-image: url(img/bg.jpg);
+        background-size: cover;
+        overflow: scroll;
+    }
+    
+    .content .cover {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+    
+    .content .scroll {
+        display: none;
+        position: relative;
+        z-index: 10;
+        padding-top: 10px;
+        background-image: url(img/bg.jpg);
+        background-repeat-y: repeat;
+        background-size: 100% auto;
+        padding-bottom: 10px;
+    }
+    
+    .scroll-item {
+        color: #fff;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <!-- 更多 -->
+    <a class="more" href="https://mp.weixin.qq.com/s/tCcKtcGztWX5g6Say-np2g">更多</a>
+    <!-- 背景音乐 -->
+    <audio id='ad' controls="controls" style='display: none;' loop>
+        <source  src="media/1.mp3" type="audio/mpeg" />
+      </audio>
+    <!-- 信封背景 -->
+    <canvas id="canvas_is" style='opacity:0.4'></canvas>
+    <!-- 信封 -->
+    <img id='letter' src="img/open_letter.jpg" alt="" class="message">
+    <!-- 文字部分 -->
+    <div class="content">
+        <!-- 白色背景 -->
+        <div class="cover"></div>
+        <!-- 打字部分 -->
+        <div class="div_pure_words">
+            <div class="div_pw_typed">
+                <!-- 正文部分，绝对定位 -->
+                <span id="span_pw_typed"></span>
+            </div>
+        </div>
+        <div class="scroll">
+            <p class="scroll-item" style='padding-top:70px'>️️1💕️I Love You💕️️</p>
+            <p class="scroll-item">️️2💕️I Love You💕️️</p>
+            <p class="scroll-item">️️3💕️I Love You💕️️</p>
+            <p class="scroll-item">️️4💕️I Love You💕️️</p>
+            <p class="scroll-item">️️5💕️I Love You💕️️</p>
+            <p class="scroll-item">️️6💕️I Love You💕️️</p>
+            <p class="scroll-item">️️7💕️I Love You💕️️</p>
+            <p class="scroll-item">️️8💕️I Love You💕️️</p>
+            <p class="scroll-item">️️9💕️I Love You💕️️</p>
+            <p class="scroll-item">️️10💕️I Love You💕️️</p>
+            <p class="scroll-item">️️11💕️I Love You💕️️</p>
+            <p class="scroll-item">️️12💕️I Love You💕️️</p>
+            <p class="scroll-item">️️13💕️I Love You💕️️</p>
+            <p class="scroll-item">️️14💕️I Love You💕️️</p>
+            <p class="scroll-item">️️15💕️I Love You💕️️</p>
+            <p class="scroll-item">️️16💕️I Love You💕️️</p>
+            <p class="scroll-item">️️17💕️I Love You💕️️</p>
+            <p class="scroll-item">️️18💕️I Love You💕️️</p>
+            <p class="scroll-item">️️19💕️I Love You💕️️</p>
+            <p class="scroll-item">️️20💕️I Love You💕️️</p>
+            <p class="scroll-item">️️21💕️I Love You💕️️</p>
+            <p class="scroll-item">️️22💕️I Love You💕️️</p>
+            <p class="scroll-item">️️23💕️I Love You💕️️</p>
+            <p class="scroll-item">️️24💕️I Love You💕️️</p>
+            <p class="scroll-item">️️25💕️I Love You💕️️</p>
+            <p class="scroll-item">️️26💕️I Love You💕️️</p>
+            <p class="scroll-item">️️27💕️I Love You💕️️</p>
+            <p class="scroll-item">️️28💕️I Love You💕️️</p>
+            <p class="scroll-item">️️29💕️I Love You💕️️</p>
+            <p class="scroll-item">️️30💕️I Love You💕️️</p>
+            <p class="scroll-item">️️31💕️I Love You💕️️</p>
+            <p class="scroll-item">️️32💕️I Love You💕️️</p>
+            <p class="scroll-item">️️33💕️I Love You💕️️</p>
+            <p class="scroll-item">️️34💕️I Love You💕️️</p>
+            <p class="scroll-item">️️35💕️I Love You💕️️</p>
+            <p class="scroll-item">️️36💕️I Love You💕️️</p>
+            <p class="scroll-item">️️37💕️I Love You💕️️</p>
+            <p class="scroll-item">️️38💕️I Love You💕️️</p>
+            <p class="scroll-item">️️39💕️I Love You💕️️</p>
+            <p class="scroll-item">️️40💕️I Love You💕️️</p>
+            <p class="scroll-item">️️41💕️I Love You💕️️</p>
+            <p class="scroll-item">️️42💕️I Love You💕️️</p>
+            <p class="scroll-item">️️43💕️I Love You💕️️</p>
+            <p class="scroll-item">️️44💕️I Love You💕️️</p>
+            <p class="scroll-item">️️45💕️I Love You💕️️</p>
+            <p class="scroll-item">️️46💕️I Love You💕️️</p>
+            <p class="scroll-item">️️47💕️I Love You💕️️</p>
+            <p class="scroll-item">️️48💕️I Love You💕️️</p>
+            <p class="scroll-item">️️49💕️I Love You💕️️</p>
+            <p class="scroll-item">️️50💕️I Love You💕️️</p>
+            <p class="scroll-item">️️51💕️I Love You💕️️</p>
+            <p class="scroll-item">️️52💕️I Love You💕️️</p>
+            <p class="scroll-item">️️53💕️I Love You💕️️</p>
+            <p class="scroll-item">️️54💕️I Love You💕️️</p>
+            <p class="scroll-item">️️55💕️I Love You💕️️</p>
+            <p class="scroll-item">️️56💕️I Love You💕️️</p>
+            <p class="scroll-item">️️57💕️I Love You💕️️</p>
+            <p class="scroll-item">️️58💕️I Love You💕️️</p>
+            <p class="scroll-item">️️59💕️I Love You💕️️</p>
+            <p class="scroll-item">️️60💕️I Love You💕️️</p>
+            <p class="scroll-item">️️61💕️I Love You💕️️</p>
+            <p class="scroll-item">️️62💕️I Love You💕️️</p>
+            <p class="scroll-item">️️63💕️I Love You💕️️</p>
+            <p class="scroll-item">️️64💕️I Love You💕️️</p>
+            <p class="scroll-item">️️65💕️I Love You💕️️</p>
+            <p class="scroll-item">️️66💕️I Love You💕️️</p>
+            <p class="scroll-item">️️67💕️I Love You💕️️</p>
+            <p class="scroll-item">️️68💕️I Love You💕️️</p>
+            <p class="scroll-item">️️69💕️I Love You💕️️</p>
+            <p class="scroll-item">️️70💕️I Love You💕️️</p>
+            <p class="scroll-item">️️71💕️I Love You💕️️</p>
+            <p class="scroll-item">️️72💕️I Love You💕️️</p>
+            <p class="scroll-item">️️73💕️I Love You💕️️</p>
+            <p class="scroll-item">️️74💕️I Love You💕️️</p>
+            <p class="scroll-item">️️75💕️I Love You💕️️</p>
+            <p class="scroll-item">️️76💕️I Love You💕️️</p>
+            <p class="scroll-item">️️77💕️I Love You💕️️</p>
+            <p class="scroll-item">️️78💕️I Love You💕️️</p>
+            <p class="scroll-item">️️79💕️I Love You💕️️</p>
+            <p class="scroll-item">️️80💕️I Love You💕️️</p>
+            <p class="scroll-item">️️81💕️I Love You💕️️</p>
+            <p class="scroll-item">️️82💕️I Love You💕️️</p>
+            <p class="scroll-item">️️83💕️I Love You💕️️</p>
+            <p class="scroll-item">️️84💕️I Love You💕️️</p>
+            <p class="scroll-item">️️85💕️I Love You💕️️</p>
+            <p class="scroll-item">️️86💕️I Love You💕️️</p>
+            <p class="scroll-item">️️87💕️I Love You💕️️</p>
+            <p class="scroll-item">️️88💕️I Love You💕️️</p>
+            <p class="scroll-item">️️89💕️I Love You💕️️</p>
+            <p class="scroll-item">️️90💕️I Love You💕️️</p>
+            <p class="scroll-item">️️91💕️I Love You💕️️</p>
+            <p class="scroll-item">️️92💕️I Love You💕️️</p>
+            <p class="scroll-item">️️93💕️I Love You💕️️</p>
+            <p class="scroll-item">️️94💕️I Love You💕️️</p>
+            <p class="scroll-item">️️95💕️I Love You💕️️</p>
+            <p class="scroll-item">️️96💕️I Love You💕️️</p>
+            <p class="scroll-item">️️97💕️I Love You💕️️</p>
+            <p class="scroll-item">️️98💕️I Love You💕️️</p>
+            <p class="scroll-item">️️99💕️I Love You💕️️</p>
+            <p class="scroll-item">️️100💕️I Love You💕️️</p>
+            <p class="scroll-item">️️101💕️I Love You💕️️</p>
+            <p class="scroll-item">️️102💕️I Love You💕️️</p>
+            <p class="scroll-item">️️103💕️I Love You💕️️</p>
+            <p class="scroll-item">️️104💕️I Love You💕️️</p>
+            <p class="scroll-item">️️105💕️I Love You💕️️</p>
+            <p class="scroll-item">️️106💕️I Love You💕️️</p>
+            <p class="scroll-item">️️107💕️I Love You💕️️</p>
+            <p class="scroll-item">️️108💕️I Love You💕️️</p>
+            <p class="scroll-item">️️109💕️I Love You💕️️</p>
+            <p class="scroll-item">️️110💕️I Love You💕️️</p>
+            <p class="scroll-item">️️111💕️I Love You💕️️</p>
+            <p class="scroll-item">️️112💕️I Love You💕️️</p>
+            <p class="scroll-item">️️113💕️I Love You💕️️</p>
+            <p class="scroll-item">️️114💕️I Love You💕️️</p>
+            <p class="scroll-item">️️115💕️I Love You💕️️</p>
+            <p class="scroll-item">️️116💕️I Love You💕️️</p>
+            <p class="scroll-item">️️117💕️I Love You💕️️</p>
+            <p class="scroll-item">️️118💕️I Love You💕️️</p>
+            <p class="scroll-item">️️119💕️I Love You💕️️</p>
+            <p class="scroll-item">️️120💕️I Love You💕️️</p>
+            <p class="scroll-item">️️121💕️I Love You💕️️</p>
+            <p class="scroll-item">️️122💕️I Love You💕️️</p>
+            <p class="scroll-item">️️123💕️I Love You💕️️</p>
+            <p class="scroll-item">️️124💕️I Love You💕️️</p>
+            <p class="scroll-item">️️125💕️I Love You💕️️</p>
+            <p class="scroll-item">️️126💕️I Love You💕️️</p>
+            <p class="scroll-item">️️127💕️I Love You💕️️</p>
+            <p class="scroll-item">️️128💕️I Love You💕️️</p>
+            <p class="scroll-item">️️129💕️I Love You💕️️</p>
+            <p class="scroll-item">️️130💕️I Love You💕️️</p>
+            <p class="scroll-item">️️131💕️I Love You💕️️</p>
+            <p class="scroll-item">️️132💕️I Love You💕️️</p>
+            <p class="scroll-item">️️133💕️I Love You💕️️</p>
+            <p class="scroll-item">️️134💕️I Love You💕️️</p>
+            <p class="scroll-item">️️135💕️I Love You💕️️</p>
+            <p class="scroll-item">️️136💕️I Love You💕️️</p>
+            <p class="scroll-item">️️137💕️I Love You💕️️</p>
+            <p class="scroll-item">️️138💕️I Love You💕️️</p>
+            <p class="scroll-item">️️139💕️I Love You💕️️</p>
+            <p class="scroll-item">️️140💕️I Love You💕️️</p>
+            <p class="scroll-item">️️141💕️I Love You💕️️</p>
+            <p class="scroll-item">️️142💕️I Love You💕️️</p>
+            <p class="scroll-item">️️143💕️I Love You💕️️</p>
+            <p class="scroll-item">️️144💕️I Love You💕️️</p>
+            <p class="scroll-item">️️145💕️I Love You💕️️</p>
+            <p class="scroll-item">️️146💕️I Love You💕️️</p>
+            <p class="scroll-item">️️147💕️I Love You💕️️</p>
+            <p class="scroll-item">️️148💕️I Love You💕️️</p>
+            <p class="scroll-item">️️149💕️I Love You💕️️</p>
+            <p class="scroll-item">️️150💕️I Love You💕️️</p>
+            <p class="scroll-item">️️151💕️I Love You💕️️</p>
+            <p class="scroll-item">️️152💕️I Love You💕️️</p>
+            <p class="scroll-item">️️153💕️I Love You💕️️</p>
+            <p class="scroll-item">️️154💕️I Love You💕️️</p>
+            <p class="scroll-item">️️155💕️I Love You💕️️</p>
+            <p class="scroll-item">️️156💕️I Love You💕️️</p>
+            <p class="scroll-item">️️157💕️I Love You💕️️</p>
+            <p class="scroll-item">️️158💕️I Love You💕️️</p>
+            <p class="scroll-item">️️159💕️I Love You💕️️</p>
+            <p class="scroll-item">️️160💕️I Love You💕️️</p>
+            <p class="scroll-item">️️161💕️I Love You💕️️</p>
+            <p class="scroll-item">️️162💕️I Love You💕️️</p>
+            <p class="scroll-item">️️163💕️I Love You💕️️</p>
+            <p class="scroll-item">️️164💕️I Love You💕️️</p>
+            <p class="scroll-item">️️165💕️I Love You💕️️</p>
+            <p class="scroll-item">️️166💕️I Love You💕️️</p>
+            <p class="scroll-item">️️167💕️I Love You💕️️</p>
+            <p class="scroll-item">️️168💕️I Love You💕️️</p>
+            <p class="scroll-item">️️169💕️I Love You💕️️</p>
+            <p class="scroll-item">️️170💕️I Love You💕️️</p>
+            <p class="scroll-item">️️171💕️I Love You💕️️</p>
+            <p class="scroll-item">️️172💕️I Love You💕️️</p>
+            <p class="scroll-item">️️173💕️I Love You💕️️</p>
+            <p class="scroll-item">️️174💕️I Love You💕️️</p>
+            <p class="scroll-item">️️175💕️I Love You💕️️</p>
+            <p class="scroll-item">️️176💕️I Love You💕️️</p>
+            <p class="scroll-item">️️177💕️I Love You💕️️</p>
+            <p class="scroll-item">️️178💕️I Love You💕️️</p>
+            <p class="scroll-item">️️179💕️I Love You💕️️</p>
+            <p class="scroll-item">️️180💕️I Love You💕️️</p>
+            <p class="scroll-item">️️181💕️I Love You💕️️</p>
+            <p class="scroll-item">️️182💕️I Love You💕️️</p>
+            <p class="scroll-item">️️183💕️I Love You💕️️</p>
+            <p class="scroll-item">️️184💕️I Love You💕️️</p>
+            <p class="scroll-item">️️185💕️I Love You💕️️</p>
+            <p class="scroll-item">️️186💕️I Love You💕️️</p>
+            <p class="scroll-item">️️187💕️I Love You💕️️</p>
+            <p class="scroll-item">️️188💕️I Love You💕️️</p>
+            <p class="scroll-item">️️189💕️I Love You💕️️</p>
+            <p class="scroll-item">️️190💕️I Love You💕️️</p>
+            <p class="scroll-item">️️191💕️I Love You💕️️</p>
+            <p class="scroll-item">️️192💕️I Love You💕️️</p>
+            <p class="scroll-item">️️193💕️I Love You💕️️</p>
+            <p class="scroll-item">️️194💕️I Love You💕️️</p>
+            <p class="scroll-item">️️195💕️I Love You💕️️</p>
+            <p class="scroll-item">️️196💕️I Love You💕️️</p>
+            <p class="scroll-item">️️197💕️I Love You💕️️</p>
+            <p class="scroll-item">️️198💕️I Love You💕️️</p>
+            <p class="scroll-item">️️199💕️I Love You💕️️</p>
+            <p class="scroll-item">️️200💕️I Love You💕️️</p>
+            <p class="scroll-item">️️201💕️I Love You💕️️</p>
+            <p class="scroll-item">️️202💕️I Love You💕️️</p>
+            <p class="scroll-item">️️203💕️I Love You💕️️</p>
+            <p class="scroll-item">️️204💕️I Love You💕️️</p>
+            <p class="scroll-item">️️205💕️I Love You💕️️</p>
+            <p class="scroll-item">️️206💕️I Love You💕️️</p>
+            <p class="scroll-item">️️207💕️I Love You💕️️</p>
+            <p class="scroll-item">️️208💕️I Love You💕️️</p>
+            <p class="scroll-item">️️209💕️I Love You💕️️</p>
+            <p class="scroll-item">️️210💕️I Love You💕️️</p>
+            <p class="scroll-item">️️211💕️I Love You💕️️</p>
+            <p class="scroll-item">️️212💕️I Love You💕️️</p>
+            <p class="scroll-item">️️213💕️I Love You💕️️</p>
+            <p class="scroll-item">️️214💕️I Love You💕️️</p>
+            <p class="scroll-item">️️215💕️I Love You💕️️</p>
+            <p class="scroll-item">️️216💕️I Love You💕️️</p>
+            <p class="scroll-item">️️217💕️I Love You💕️️</p>
+            <p class="scroll-item">️️218💕️I Love You💕️️</p>
+            <p class="scroll-item">️️219💕️I Love You💕️️</p>
+            <p class="scroll-item">️️220💕️I Love You💕️️</p>
+            <p class="scroll-item">️️221💕️I Love You💕️️</p>
+            <p class="scroll-item">️️222💕️I Love You💕️️</p>
+            <p class="scroll-item">️️223💕️I Love You💕️️</p>
+            <p class="scroll-item">️️224💕️I Love You💕️️</p>
+            <p class="scroll-item">️️225💕️I Love You💕️️</p>
+            <p class="scroll-item">️️226💕️I Love You💕️️</p>
+            <p class="scroll-item">️️227💕️I Love You💕️️</p>
+            <p class="scroll-item">️️228💕️I Love You💕️️</p>
+            <p class="scroll-item">️️229💕️I Love You💕️️</p>
+            <p class="scroll-item">️️230💕️I Love You💕️️</p>
+            <p class="scroll-item">️️231💕️I Love You💕️️</p>
+            <p class="scroll-item">️️232💕️I Love You💕️️</p>
+            <p class="scroll-item">️️233💕️I Love You💕️️</p>
+            <p class="scroll-item">️️234💕️I Love You💕️️</p>
+            <p class="scroll-item">️️235💕️I Love You💕️️</p>
+            <p class="scroll-item">️️236💕️I Love You💕️️</p>
+            <p class="scroll-item">️️237💕️I Love You💕️️</p>
+            <p class="scroll-item">️️238💕️I Love You💕️️</p>
+            <p class="scroll-item">️️239💕️I Love You💕️️</p>
+            <p class="scroll-item">️️240💕️I Love You💕️️</p>
+            <p class="scroll-item">️️241💕️I Love You💕️️</p>
+            <p class="scroll-item">️️242💕️I Love You💕️️</p>
+            <p class="scroll-item">️️243💕️I Love You💕️️</p>
+            <p class="scroll-item">️️244💕️I Love You💕️️</p>
+            <p class="scroll-item">️️245💕️I Love You💕️️</p>
+            <p class="scroll-item">️️246💕️I Love You💕️️</p>
+            <p class="scroll-item">️️247💕️I Love You💕️️</p>
+            <p class="scroll-item">️️248💕️I Love You💕️️</p>
+            <p class="scroll-item">️️249💕️I Love You💕️️</p>
+            <p class="scroll-item">️️250💕️I Love You💕️️</p>
+            <p class="scroll-item">️️251💕️I Love You💕️️</p>
+            <p class="scroll-item">️️252💕️I Love You💕️️</p>
+            <p class="scroll-item">️️253💕️I Love You💕️️</p>
+            <p class="scroll-item">️️254💕️I Love You💕️️</p>
+            <p class="scroll-item">️️255💕️I Love You💕️️</p>
+            <p class="scroll-item">️️256💕️I Love You💕️️</p>
+            <p class="scroll-item">️️257💕️I Love You💕️️</p>
+            <p class="scroll-item">️️258💕️I Love You💕️️</p>
+            <p class="scroll-item">️️259💕️I Love You💕️️</p>
+            <p class="scroll-item">️️260💕️I Love You💕️️</p>
+            <p class="scroll-item">️️261💕️I Love You💕️️</p>
+            <p class="scroll-item">️️262💕️I Love You💕️️</p>
+            <p class="scroll-item">️️263💕️I Love You💕️️</p>
+            <p class="scroll-item">️️264💕️I Love You💕️️</p>
+            <p class="scroll-item">️️265💕️I Love You💕️️</p>
+            <p class="scroll-item">️️266💕️I Love You💕️️</p>
+            <p class="scroll-item">️️267💕️I Love You💕️️</p>
+            <p class="scroll-item">️️268💕️I Love You💕️️</p>
+            <p class="scroll-item">️️269💕️I Love You💕️️</p>
+            <p class="scroll-item">️️270💕️I Love You💕️️</p>
+            <p class="scroll-item">️️271💕️I Love You💕️️</p>
+            <p class="scroll-item">️️272💕️I Love You💕️️</p>
+            <p class="scroll-item">️️273💕️I Love You💕️️</p>
+            <p class="scroll-item">️️274💕️I Love You💕️️</p>
+            <p class="scroll-item">️️275💕️I Love You💕️️</p>
+            <p class="scroll-item">️️276💕️I Love You💕️️</p>
+            <p class="scroll-item">️️277💕️I Love You💕️️</p>
+            <p class="scroll-item">️️278💕️I Love You💕️️</p>
+            <p class="scroll-item">️️279💕️I Love You💕️️</p>
+            <p class="scroll-item">️️280💕️I Love You💕️️</p>
+            <p class="scroll-item">️️281💕️I Love You💕️️</p>
+            <p class="scroll-item">️️282💕️I Love You💕️️</p>
+            <p class="scroll-item">️️283💕️I Love You💕️️</p>
+            <p class="scroll-item">️️284💕️I Love You💕️️</p>
+            <p class="scroll-item">️️285💕️I Love You💕️️</p>
+            <p class="scroll-item">️️286💕️I Love You💕️️</p>
+            <p class="scroll-item">️️287💕️I Love You💕️️</p>
+            <p class="scroll-item">️️288💕️I Love You💕️️</p>
+            <p class="scroll-item">️️289💕️I Love You💕️️</p>
+            <p class="scroll-item">️️290💕️I Love You💕️️</p>
+            <p class="scroll-item">️️291💕️I Love You💕️️</p>
+            <p class="scroll-item">️️292💕️I Love You💕️️</p>
+            <p class="scroll-item">️️293💕️I Love You💕️️</p>
+            <p class="scroll-item">️️294💕️I Love You💕️️</p>
+            <p class="scroll-item">️️295💕️I Love You💕️️</p>
+            <p class="scroll-item">️️296💕️I Love You💕️️</p>
+            <p class="scroll-item">️️297💕️I Love You💕️️</p>
+            <p class="scroll-item">️️298💕️I Love You💕️️</p>
+            <p class="scroll-item">️️299💕️I Love You💕️️</p>
+            <p class="scroll-item">️️300💕️I Love You💕️️</p>
+            <p class="scroll-item">️️301💕️I Love You💕️️</p>
+            <p class="scroll-item">️️302💕️I Love You💕️️</p>
+            <p class="scroll-item">️️303💕️I Love You💕️️</p>
+            <p class="scroll-item">️️304💕️I Love You💕️️</p>
+            <p class="scroll-item">️️305💕️I Love You💕️️</p>
+            <p class="scroll-item">️️306💕️I Love You💕️️</p>
+            <p class="scroll-item">️️307💕️I Love You💕️️</p>
+            <p class="scroll-item">️️308💕️I Love You💕️️</p>
+            <p class="scroll-item">️️309💕️I Love You💕️️</p>
+            <p class="scroll-item">️️310💕️I Love You💕️️</p>
+            <p class="scroll-item">️️311💕️I Love You💕️️</p>
+            <p class="scroll-item">️️312💕️I Love You💕️️</p>
+            <p class="scroll-item">️️313💕️I Love You💕️️</p>
+            <p class="scroll-item">️️314💕️I Love You💕️️</p>
+            <p class="scroll-item">️️315💕️I Love You💕️️</p>
+            <p class="scroll-item">️️316💕️I Love You💕️️</p>
+            <p class="scroll-item">️️317💕️I Love You💕️️</p>
+            <p class="scroll-item">️️318💕️I Love You💕️️</p>
+            <p class="scroll-item">️️319💕️I Love You💕️️</p>
+            <p class="scroll-item">️️320💕️I Love You💕️️</p>
+            <p class="scroll-item">️️321💕️I Love You💕️️</p>
+            <p class="scroll-item">️️322💕️I Love You💕️️</p>
+            <p class="scroll-item">️️323💕️I Love You💕️️</p>
+            <p class="scroll-item">️️324💕️I Love You💕️️</p>
+            <p class="scroll-item">️️325💕️I Love You💕️️</p>
+            <p class="scroll-item">️️326💕️I Love You💕️️</p>
+            <p class="scroll-item">️️327💕️I Love You💕️️</p>
+            <p class="scroll-item">️️328💕️I Love You💕️️</p>
+            <p class="scroll-item">️️329💕️I Love You💕️️</p>
+            <p class="scroll-item">️️330💕️I Love You💕️️</p>
+            <p class="scroll-item">️️331💕️I Love You💕️️</p>
+            <p class="scroll-item">️️332💕️I Love You💕️️</p>
+            <p class="scroll-item">️️333💕️I Love You💕️️</p>
+            <p class="scroll-item">️️334💕️I Love You💕️️</p>
+            <p class="scroll-item">️️335💕️I Love You💕️️</p>
+            <p class="scroll-item">️️336💕️I Love You💕️️</p>
+            <p class="scroll-item">️️337💕️I Love You💕️️</p>
+            <p class="scroll-item">️️338💕️I Love You💕️️</p>
+            <p class="scroll-item">️️339💕️I Love You💕️️</p>
+            <p class="scroll-item">️️340💕️I Love You💕️️</p>
+            <p class="scroll-item">️️341💕️I Love You💕️️</p>
+            <p class="scroll-item">️️342💕️I Love You💕️️</p>
+            <p class="scroll-item">️️343💕️I Love You💕️️</p>
+            <p class="scroll-item">️️344💕️I Love You💕️️</p>
+            <p class="scroll-item">️️345💕️I Love You💕️️</p>
+            <p class="scroll-item">️️346💕️I Love You💕️️</p>
+            <p class="scroll-item">️️347💕️I Love You💕️️</p>
+            <p class="scroll-item">️️348💕️I Love You💕️️</p>
+            <p class="scroll-item">️️349💕️I Love You💕️️</p>
+            <p class="scroll-item">️️350💕️I Love You💕️️</p>
+            <p class="scroll-item">️️351💕️I Love You💕️️</p>
+            <p class="scroll-item">️️352💕️I Love You💕️️</p>
+            <p class="scroll-item">️️353💕️I Love You💕️️</p>
+            <p class="scroll-item">️️354💕️I Love You💕️️</p>
+            <p class="scroll-item">️️355💕️I Love You💕️️</p>
+            <p class="scroll-item">️️356💕️I Love You💕️️</p>
+            <p class="scroll-item">️️357💕️I Love You💕️️</p>
+            <p class="scroll-item">️️358💕️I Love You💕️️</p>
+            <p class="scroll-item">️️359💕️I Love You💕️️</p>
+            <p class="scroll-item">️️360💕️I Love You💕️️</p>
+            <p class="scroll-item">️️361💕️I Love You💕️️</p>
+            <p class="scroll-item">️️362💕️I Love You💕️️</p>
+            <p class="scroll-item">️️363💕️I Love You💕️️</p>
+            <p class="scroll-item">️️364💕️I Love You💕️️</p>
+            <p class="scroll-item">️️365💕️I Love You💕️️</p>
+            <p class="scroll-item">️️366💕️I Love You💕️️</p>
+            <p class="scroll-item">️️367💕️I Love You💕️️</p>
+            <p class="scroll-item">️️368💕️I Love You💕️️</p>
+            <p class="scroll-item">️️369💕️I Love You💕️️</p>
+            <p class="scroll-item">️️370💕️I Love You💕️️</p>
+            <p class="scroll-item">️️371💕️I Love You💕️️</p>
+            <p class="scroll-item">️️372💕️I Love You💕️️</p>
+            <p class="scroll-item">️️373💕️I Love You💕️️</p>
+            <p class="scroll-item">️️374💕️I Love You💕️️</p>
+            <p class="scroll-item">️️375💕️I Love You💕️️</p>
+            <p class="scroll-item">️️376💕️I Love You💕️️</p>
+            <p class="scroll-item">️️377💕️I Love You💕️️</p>
+            <p class="scroll-item">️️378💕️I Love You💕️️</p>
+            <p class="scroll-item">️️379💕️I Love You💕️️</p>
+            <p class="scroll-item">️️380💕️I Love You💕️️</p>
+            <p class="scroll-item">️️381💕️I Love You💕️️</p>
+            <p class="scroll-item">️️382💕️I Love You💕️️</p>
+            <p class="scroll-item">️️383💕️I Love You💕️️</p>
+            <p class="scroll-item">️️384💕️I Love You💕️️</p>
+            <p class="scroll-item">️️385💕️I Love You💕️️</p>
+            <p class="scroll-item">️️386💕️I Love You💕️️</p>
+            <p class="scroll-item">️️387💕️I Love You💕️️</p>
+            <p class="scroll-item">️️388💕️I Love You💕️️</p>
+            <p class="scroll-item">️️389💕️I Love You💕️️</p>
+            <p class="scroll-item">️️390💕️I Love You💕️️</p>
+            <p class="scroll-item">️️391💕️I Love You💕️️</p>
+            <p class="scroll-item">️️392💕️I Love You💕️️</p>
+            <p class="scroll-item">️️393💕️I Love You💕️️</p>
+            <p class="scroll-item">️️394💕️I Love You💕️️</p>
+            <p class="scroll-item">️️395💕️I Love You💕️️</p>
+            <p class="scroll-item">️️396💕️I Love You💕️️</p>
+            <p class="scroll-item">️️397💕️I Love You💕️️</p>
+            <p class="scroll-item">️️398💕️I Love You💕️️</p>
+            <p class="scroll-item">️️399💕️I Love You💕️️</p>
+            <p class="scroll-item">️️400💕️I Love You💕️️</p>
+            <p class="scroll-item">️️401💕️I Love You💕️️</p>
+            <p class="scroll-item">️️402💕️I Love You💕️️</p>
+            <p class="scroll-item">️️403💕️I Love You💕️️</p>
+            <p class="scroll-item">️️404💕️I Love You💕️️</p>
+            <p class="scroll-item">️️405💕️I Love You💕️️</p>
+            <p class="scroll-item">️️406💕️I Love You💕️️</p>
+            <p class="scroll-item">️️407💕️I Love You💕️️</p>
+            <p class="scroll-item">️️408💕️I Love You💕️️</p>
+            <p class="scroll-item">️️409💕️I Love You💕️️</p>
+            <p class="scroll-item">️️410💕️I Love You💕️️</p>
+            <p class="scroll-item">️️411💕️I Love You💕️️</p>
+            <p class="scroll-item">️️412💕️I Love You💕️️</p>
+            <p class="scroll-item">️️413💕️I Love You💕️️</p>
+            <p class="scroll-item">️️414💕️I Love You💕️️</p>
+            <p class="scroll-item">️️415💕️I Love You💕️️</p>
+            <p class="scroll-item">️️416💕️I Love You💕️️</p>
+            <p class="scroll-item">️️417💕️I Love You💕️️</p>
+            <p class="scroll-item">️️418💕️I Love You💕️️</p>
+            <p class="scroll-item">️️419💕️I Love You💕️️</p>
+            <p class="scroll-item">️️420💕️I Love You💕️️</p>
+            <p class="scroll-item">️️421💕️I Love You💕️️</p>
+            <p class="scroll-item">️️422💕️I Love You💕️️</p>
+            <p class="scroll-item">️️423💕️I Love You💕️️</p>
+            <p class="scroll-item">️️424💕️I Love You💕️️</p>
+            <p class="scroll-item">️️425💕️I Love You💕️️</p>
+            <p class="scroll-item">️️426💕️I Love You💕️️</p>
+            <p class="scroll-item">️️427💕️I Love You💕️️</p>
+            <p class="scroll-item">️️428💕️I Love You💕️️</p>
+            <p class="scroll-item">️️429💕️I Love You💕️️</p>
+            <p class="scroll-item">️️430💕️I Love You💕️️</p>
+            <p class="scroll-item">️️431💕️I Love You💕️️</p>
+            <p class="scroll-item">️️432💕️I Love You💕️️</p>
+            <p class="scroll-item">️️433💕️I Love You💕️️</p>
+            <p class="scroll-item">️️434💕️I Love You💕️️</p>
+            <p class="scroll-item">️️435💕️I Love You💕️️</p>
+            <p class="scroll-item">️️436💕️I Love You💕️️</p>
+            <p class="scroll-item">️️437💕️I Love You💕️️</p>
+            <p class="scroll-item">️️438💕️I Love You💕️️</p>
+            <p class="scroll-item">️️439💕️I Love You💕️️</p>
+            <p class="scroll-item">️️440💕️I Love You💕️️</p>
+            <p class="scroll-item">️️441💕️I Love You💕️️</p>
+            <p class="scroll-item">️️442💕️I Love You💕️️</p>
+            <p class="scroll-item">️️443💕️I Love You💕️️</p>
+            <p class="scroll-item">️️444💕️I Love You💕️️</p>
+            <p class="scroll-item">️️445💕️I Love You💕️️</p>
+            <p class="scroll-item">️️446💕️I Love You💕️️</p>
+            <p class="scroll-item">️️447💕️I Love You💕️️</p>
+            <p class="scroll-item">️️448💕️I Love You💕️️</p>
+            <p class="scroll-item">️️449💕️I Love You💕️️</p>
+            <p class="scroll-item">️️450💕️I Love You💕️️</p>
+            <p class="scroll-item">️️451💕️I Love You💕️️</p>
+            <p class="scroll-item">️️452💕️I Love You💕️️</p>
+            <p class="scroll-item">️️453💕️I Love You💕️️</p>
+            <p class="scroll-item">️️454💕️I Love You💕️️</p>
+            <p class="scroll-item">️️455💕️I Love You💕️️</p>
+            <p class="scroll-item">️️456💕️I Love You💕️️</p>
+            <p class="scroll-item">️️457💕️I Love You💕️️</p>
+            <p class="scroll-item">️️458💕️I Love You💕️️</p>
+            <p class="scroll-item">️️459💕️I Love You💕️️</p>
+            <p class="scroll-item">️️460💕️I Love You💕️️</p>
+            <p class="scroll-item">️️461💕️I Love You💕️️</p>
+            <p class="scroll-item">️️462💕️I Love You💕️️</p>
+            <p class="scroll-item">️️463💕️I Love You💕️️</p>
+            <p class="scroll-item">️️464💕️I Love You💕️️</p>
+            <p class="scroll-item">️️465💕️I Love You💕️️</p>
+            <p class="scroll-item">️️466💕️I Love You💕️️</p>
+            <p class="scroll-item">️️467💕️I Love You💕️️</p>
+            <p class="scroll-item">️️468💕️I Love You💕️️</p>
+            <p class="scroll-item">️️469💕️I Love You💕️️</p>
+            <p class="scroll-item">️️470💕️I Love You💕️️</p>
+            <p class="scroll-item">️️471💕️I Love You💕️️</p>
+            <p class="scroll-item">️️472💕️I Love You💕️️</p>
+            <p class="scroll-item">️️473💕️I Love You💕️️</p>
+            <p class="scroll-item">️️474💕️I Love You💕️️</p>
+            <p class="scroll-item">️️475💕️I Love You💕️️</p>
+            <p class="scroll-item">️️476💕️I Love You💕️️</p>
+            <p class="scroll-item">️️477💕️I Love You💕️️</p>
+            <p class="scroll-item">️️478💕️I Love You💕️️</p>
+            <p class="scroll-item">️️479💕️I Love You💕️️</p>
+            <p class="scroll-item">️️480💕️I Love You💕️️</p>
+            <p class="scroll-item">️️481💕️I Love You💕️️</p>
+            <p class="scroll-item">️️482💕️I Love You💕️️</p>
+            <p class="scroll-item">️️483💕️I Love You💕️️</p>
+            <p class="scroll-item">️️484💕️I Love You💕️️</p>
+            <p class="scroll-item">️️485💕️I Love You💕️️</p>
+            <p class="scroll-item">️️486💕️I Love You💕️️</p>
+            <p class="scroll-item">️️487💕️I Love You💕️️</p>
+            <p class="scroll-item">️️488💕️I Love You💕️️</p>
+            <p class="scroll-item">️️489💕️I Love You💕️️</p>
+            <p class="scroll-item">️️490💕️I Love You💕️️</p>
+            <p class="scroll-item">️️491💕️I Love You💕️️</p>
+            <p class="scroll-item">️️492💕️I Love You💕️️</p>
+            <p class="scroll-item">️️493💕️I Love You💕️️</p>
+            <p class="scroll-item">️️494💕️I Love You💕️️</p>
+            <p class="scroll-item">️️495💕️I Love You💕️️</p>
+            <p class="scroll-item">️️496💕️I Love You💕️️</p>
+            <p class="scroll-item">️️497💕️I Love You💕️️</p>
+            <p class="scroll-item">️️498💕️I Love You💕️️</p>
+            <p class="scroll-item">️️499💕️I Love You💕️️</p>
+            <p class="scroll-item">️️500💕️I Love You💕️️</p>
+            <p class="scroll-item">️️501💕️I Love You💕️️</p>
+            <p class="scroll-item">️️502💕️I Love You💕️️</p>
+            <p class="scroll-item">️️503💕️I Love You💕️️</p>
+            <p class="scroll-item">️️504💕️I Love You💕️️</p>
+            <p class="scroll-item">️️505💕️I Love You💕️️</p>
+            <p class="scroll-item">️️506💕️I Love You💕️️</p>
+            <p class="scroll-item">️️507💕️I Love You💕️️</p>
+            <p class="scroll-item">️️508💕️I Love You💕️️</p>
+            <p class="scroll-item">️️509💕️I Love You💕️️</p>
+            <p class="scroll-item">️️510💕️I Love You💕️️</p>
+            <p class="scroll-item">️️511💕️I Love You💕️️</p>
+            <p class="scroll-item">️️512💕️I Love You💕️️</p>
+            <p class="scroll-item">️️513💕️I Love You💕️️</p>
+            <p class="scroll-item">️️514💕️I Love You💕️️</p>
+            <p class="scroll-item">️️515💕️I Love You💕️️</p>
+            <p class="scroll-item">️️516💕️I Love You💕️️</p>
+            <p class="scroll-item">️️517💕️I Love You💕️️</p>
+            <p class="scroll-item">️️518💕️I Love You💕️️</p>
+            <p class="scroll-item">️️519💕️I Love You💕️️</p>
+            <p class="scroll-item">️️520💕️I Love You💕️️</p>
+        </div>
+    </div>
+</body>
+<script src='js/jquery-2.0.3.min.js'></script>
+<!-- 背景线条动画 -->
+<script src='js/bg.js'></script>
+<!-- 自定义表白文字 -->
+<script src='js/typed.min.js'></script>
+<script src='js/type-mine.js'></script>
+<script>
+    //点击信封
+    var letter_btn = $('#letter');
+    var bg = $('#canvas_is');
+
+    //添加点击事件
+    letter_btn.on('click', function() {
+        //隐藏背景和信封
+        console.log('隐藏背景和信封');
+        letter_btn.fadeOut();
+        bg.fadeOut();
+
+        // 播放音乐
+        $('#ad')[0].play();
+
+        //开始文字动画主体部分 
+        init_pure_words();
+    });
+</script>
+
+</html>

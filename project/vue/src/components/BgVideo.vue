@@ -2,7 +2,7 @@
 
     <video ref='bgVideo' id="myVideo" class="video-js" loop preload>
       <source
-        src="http://119.3.91.207/video/%E4%B8%87%E5%9C%A3%E8%8A%82.MP4"
+        src="http://119.3.91.207/video/%E4%B8%83%E5%A4%95%E9%B9%8A%E6%A1%A5.mp4"
         type="video/mp4"
       />
     </video>

@@ -16,12 +16,12 @@
       v-if="bgShow"
     >
     </canvas>
-    <bg-video :flag="playFlag"></bg-video>
+    <bg></bg>
   </div>
 </template>
 
 <script>
-import BgVideo from '../components/BgVideo'
+import Bg from '../components/Bg'
 import bg from '../util/bg'
 export default {
   name: '',
@@ -32,7 +32,7 @@ export default {
     }
   },
   components: {
-    BgVideo
+    Bg
   },
   methods: {
     toNext () {

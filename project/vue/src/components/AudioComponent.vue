@@ -8,11 +8,11 @@
     ></span>
     <audio
       id="audio"
-      src=""
-
+      src="../assets/media/盗将行.mp3"
+      autoplay="autoplay"
       loop="loop"
     ></audio>
-     <!-- autoplay="autoplay" -->
+
   </div>
 </template>
 
@@ -48,7 +48,7 @@ export default {
 <style lang='less' scoped>
 .media {
   position: absolute;
-  z-index: 1000;
+  z-index: 5000;
   right: 1rem;
   top: 1rem;
   width: 1.8rem;
