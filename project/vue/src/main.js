@@ -4,7 +4,9 @@ import {
   Button,
   Col,
   Input,
-  MessageBox
+  MessageBox,
+  Carousel,
+  CarouselItem
 } from 'element-ui'
 import App from './App'
 import router from './router'
@@ -29,7 +31,8 @@ Vue.component(Col.name, Col)
 Vue.component(Row.name, Row)
 Vue.component(Input.name, Input)
 Vue.component(MessageBox.name, MessageBox)
-
+Vue.component(Carousel.name, Carousel)
+Vue.component(CarouselItem.name, CarouselItem)
 Vue.prototype.$alert = MessageBox
 
 Vue.use(less)

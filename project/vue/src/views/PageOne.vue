@@ -1,17 +1,16 @@
 <template>
   <div class="page-one">
     <cover-msg-btn></cover-msg-btn>
-    <text-float></text-float>
+
   </div>
 </template>
 <script>
 import CoverMsgBtn from '../components/CoverMsgBtn'
-import TextFloat from '../components/TextFloat'
+
 export default {
   name: '',
   components: {
-    CoverMsgBtn,
-    TextFloat
+    CoverMsgBtn
   }
 }
 </script>

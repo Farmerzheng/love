@@ -16,12 +16,12 @@
       v-if="bgShow"
     >
     </canvas>
-    <bg></bg>
+    <!-- <bg></bg> -->
   </div>
 </template>
 
 <script>
-import Bg from '../components/Bg'
+// import Bg from '../components/Bg'
 import bg from '../util/bg'
 export default {
   name: '',
@@ -32,7 +32,7 @@ export default {
     }
   },
   components: {
-    Bg
+    // Bg
   },
   methods: {
     toNext () {
