@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { EventBus } from '../event-bus.js'
 // import Bg from '../components/Bg'
 import bg from '../util/bg'
 export default {
@@ -36,6 +37,8 @@ export default {
   },
   methods: {
     toNext () {
+      // 播放音频
+      EventBus.$emit('playAudio', '开始播放音乐')
       // 播放视频
       this.playFlag = true
       // 隐藏背景

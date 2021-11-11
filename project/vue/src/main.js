@@ -18,8 +18,10 @@ import {
 } from 'vue-typed-js'
 import Video from 'video.js'
 import 'video.js/dist/video-js.css'
+import $ from 'jquery'
 
 Vue.prototype.$video = Video
+Vue.prototype.$ = $
 
 cssToRem()
 

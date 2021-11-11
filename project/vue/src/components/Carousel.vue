@@ -1,12 +1,17 @@
 <template>
   <div class="carousel">
-    <el-carousel indicator-position="none" interval="2000" :loop="false">
+    <el-carousel
+      indicator-position="none"
+      :interval="2000"
+      :loop="false"
+      :autoplay="autoplay"
+    >
       <el-carousel-item v-for="(item, index) in images" :key="index">
         <img :src="item.url" alt="" />
         <p class="des">{{ item.text }}</p>
       </el-carousel-item>
     </el-carousel>
-    <div class="bg" v-show="time >= 12000">
+    <div class="bg" v-show="time >= 6">
       <marquee behavior="behavior" width="2000" loop="2"
         >&nbsp;光棍 单身狗 单身汪 光棍 单身狗 单身汪 单身一辈子 没有对象 光棍
         单身狗 单身汪 光棍 单身狗 单身汪 单身一辈子 没有对象
@@ -90,6 +95,7 @@
   </div>
 </template>
 <script>
+import { EventBus } from '../event-bus.js'
 export default {
   name: '',
   data () {
@@ -106,14 +112,26 @@ export default {
         },
         { url: require('../assets/img/icon/111.gif'), text: '' }
       ],
-      time: 0
+      time: 0,
+      autoplay: false
     }
   },
   mounted () {
     var me = this
-    setInterval(() => {
-      me.time += 2000
-    }, 2000)
+    EventBus.$on('playAudio', (msg) => {
+      // A发送来的消息
+      console.log(msg)
+      // 播放音乐
+      var audio = document.querySelector('#audio')
+      audio.play()
+
+      // 计时carousel
+      setInterval(() => {
+        me.time++
+      }, 2000)
+      // carousel 播放
+      me.autoplay = true
+    })
   },
   components: {}
 }

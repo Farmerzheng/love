@@ -12,11 +12,11 @@
       autoplay="autoplay"
       loop="loop"
     ></audio>
-
   </div>
 </template>
 
 <script>
+import { EventBus } from '../event-bus.js'
 export default {
   name: '',
   data () {
@@ -27,7 +27,6 @@ export default {
   methods: {
     play () {
       var audio = document.querySelector('#audio')
-
       if (this.playFlag === true) {
         audio.play()
         this.playFlag = !this.playFlag
@@ -38,8 +37,12 @@ export default {
     }
   },
   mounted () {
-    var audio = document.querySelector('#audio')
-    audio.play()
+    EventBus.$on('playAudio', (msg) => {
+      // A发送来的消息
+      console.log(msg)
+      var audio = document.querySelector('#audio')
+      audio.play()
+    })
   }
 }
 </script>

@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
 
@@ -56,7 +57,24 @@ module.exports = {
   // // 调整内部的 webpack 配置。
   // // 查阅 https://github.com/vuejs/vue-docs-zh-cn/blob/master/vue-cli/webpack.md
   // chainWebpack: () => { },
-  // configureWebpack: () => { },
+  configureWebpack: {
+    resolve: {
+      alias: {
+        'assets': '@assets',
+        'common': '@common',
+        'components': '@components',
+        'network': '@network',
+        'views': '@views'
+      }
+    },
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'windows.jQuery': 'jquery'
+      })
+    ]
+  },
 
   // // CSS 相关选项
   // css: {
