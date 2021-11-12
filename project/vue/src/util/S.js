@@ -15,13 +15,13 @@ S.Drawing = (function () {
   var context
   var renderFn
   var requestFrame = window.requestAnimationFrame ||
-            window.webkitRequestAnimationFrame ||
-            window.mozRequestAnimationFrame ||
-            window.oRequestAnimationFrame ||
-            window.msRequestAnimationFrame ||
-            function (callback) {
-              window.setTimeout(callback, 1000 / 60)
-            }
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.oRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    function (callback) {
+      window.setTimeout(callback, 1000 / 60)
+    }
 
   return {
     init: function (el) {
@@ -73,7 +73,7 @@ S.UI = (function () {
   function formatTime (date) {
     var h = date.getHours()
     var m = date.getMinutes()
-    var m = m < 10 ? '0' + m : m
+    m = m < 10 ? '0' + m : m
     return h + ':' + m
   }
 
@@ -104,9 +104,7 @@ S.UI = (function () {
   }
 
   function performAction (value) {
-    var action,
-      value,
-      current
+    var action, current
 
     sequence = typeof (value) === 'object' ? value : sequence.concat(value.split('|'))
 
@@ -123,10 +121,10 @@ S.UI = (function () {
           timedAction(function (index) {
             if (index === 0) {
               if (sequence.length === 0) {
-                S.Shape.switchShape(S.ShapeBuilder.letter(''))
-                document.getElementById('willerce').style.transform = 'scale(1,1)'
-                // 开始文字动画主体部分
-                init_pure_words()
+                // S.Shape.switchShape(S.ShapeBuilder.letter(''))
+                // document.getElementById('willerce').style.transform = 'scale(1,1)'
+                // // 开始文字动画主体部分
+                // init_pure_words()
               } else {
                 performAction(sequence)
               }
@@ -282,7 +280,7 @@ S.Dot.prototype = {
       }
     }
 
-    d = this.p.a - this.t.a
+    var d = this.p.a - this.t.a
     this.p.a = Math.max(0.1, this.p.a - (d * 0.05))
     d = this.p.z - this.t.z
     this.p.z = Math.max(1, this.p.z - (d * 0.05))
@@ -324,14 +322,13 @@ S.ShapeBuilder = (function () {
 
   function processCanvas () {
     var pixels = shapeContext.getImageData(0, 0, shapeCanvas.width, shapeCanvas.height).data
-    dots = [],
-    pixels,
-    x = 0,
-    y = 0,
-    fx = shapeCanvas.width,
-    fy = shapeCanvas.height,
-    w = 0,
-    h = 0
+    var dots = []
+    var x = 0
+    var y = 0
+    var fx = shapeCanvas.width
+    var fy = shapeCanvas.height
+    var w = 0
+    var h = 0
 
     for (var p = 0; p < pixels.length; p += (4 * gap)) {
       if (pixels[p + 3] > 0) {
@@ -486,7 +483,7 @@ S.Shape = (function () {
         }
       }
 
-      var d = 0
+      d = 0
       var i = 0
 
       while (n.dots.length > 0) {

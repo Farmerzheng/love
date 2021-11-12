@@ -3,13 +3,14 @@ export default function () {
   // eslint-disable-next-line camelcase
   var canvas_is = document.getElementById('canvas_is')
   // canvas_is.style.height = window.innerHeight + 'px';
+  // eslint-disable-next-line camelcase
   var ctx_is = canvas_is.getContext('2d')
   // 设置画布的大小
+  // eslint-disable-next-line camelcase
   var cw_is = (canvas_is.width = window.innerWidth)
-  var cx = cw_is / 2
+  // eslint-disable-next-line camelcase
   var ch_is = (canvas_is.height = window.innerHeight)
   // eslint-disable-next-line camelcase
-  var cy = ch_is / 2
 
   ctx_is.fillStyle = '#483D8B' // 这个似乎没有用？？
   var linesNum = 25 // 线条的数量
@@ -17,7 +18,7 @@ export default function () {
   var requestId = null
 
   for (var i = 0; i < linesNum; i++) {
-    var flag = i % 2 == 0 ? 'h' : 'v'
+    var flag = i % 2 === 0 ? 'h' : 'v'
     var l = new Line_is(flag)
     linesRy.push(l)
   }
@@ -95,8 +96,8 @@ export default function () {
       l.draw()
       l.update()
     }
-    for (var i = 0; i < linesRy.length; i++) {
-      var l = linesRy[i]
+    for (let i = 0; i < linesRy.length; i++) {
+      l = linesRy[i]
       for (var j = i + 1; j < linesRy.length; j++) {
         var l1 = linesRy[j]
         Intersect2lines(l, l1)
@@ -107,7 +108,7 @@ export default function () {
   function Init_is () {
     linesRy.length = 0
     for (var i = 0; i < linesNum; i++) {
-      var flag = i % 2 == 0 ? 'h' : 'v'
+      var flag = i % 2 === 0 ? 'h' : 'v'
       var l = new Line_is(flag)
       linesRy.push(l)
     }
@@ -116,8 +117,8 @@ export default function () {
       requestId = null
     }
     // cw_is = canvas_is.width = window.innerWidth,
-    (cw_is = canvas_is.width = window.innerWidth), (cx = cw_is / 2);
-    (ch_is = canvas_is.height = window.innerHeight), (cy = ch_is / 2)
+    cw_is = canvas_is.width = window.innerWidth
+    ch_is = canvas_is.height = window.innerHeight
     Draw_is()
   }
 

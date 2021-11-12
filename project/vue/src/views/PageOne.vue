@@ -1,7 +1,8 @@
 <template>
   <div class="page-one">
     <cover-msg-btn></cover-msg-btn>
-    <swipe-card></swipe-card>
+    <particle-effects></particle-effects>
+    <!-- <swipe-card></swipe-card> -->
     <!-- <carousel></carousel> -->
     <!-- <bg-birthday></bg-birthday>
     <cont-typed></cont-typed> -->
@@ -9,7 +10,8 @@
 </template>
 <script>
 import CoverMsgBtn from '../components/CoverMsgBtn'
-import SwipeCard from '../components/SwipeCard'
+import ParticleEffects from '../components/ParticleEffects'
+// import SwipeCard from '../components/SwipeCard'
 // import BgBirthday from '../components/BgBirthday.vue'
 // import ContTyped from '../components/ContTyped.vue'
 // import Carousel from '../components/Carousel'
@@ -17,7 +19,8 @@ export default {
   name: '',
   components: {
     CoverMsgBtn,
-    SwipeCard
+    ParticleEffects
+    // SwipeCard
     // BgBirthday,
     // ContTyped
     // Carousel
@@ -27,11 +30,11 @@ export default {
 <style scoped>
 .page-one {
   position: fixed;
-  left:0;
-  top:0;
-  bottom:0;
-  right:0;
-  margin:auto;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
   width: 100%;
   height: 100%;
 }

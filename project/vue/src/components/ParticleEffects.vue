@@ -1,10 +1,11 @@
 <template>
   <div class="bg">
-  S
+    <canvas class="canvas" width="100%" height="100%"></canvas>
   </div>
 </template>
 
 <script>
+import { EventBus } from '../event-bus.js'
 import S from '../util/S'
 export default {
   name: '',
@@ -13,11 +14,12 @@ export default {
       coverOpacity: 0.1
     }
   },
-  components: {
-
-  },
+  components: {},
   mounted () {
-
+    EventBus.$on('playAudio', (msg) => {
+      // 开始动画
+      S.init()
+    })
   }
 }
 </script>
